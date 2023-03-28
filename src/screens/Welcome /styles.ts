@@ -24,7 +24,7 @@ export const ContainerColor2 = styled.View`
   text-align: center;
 `;
 
-export const WelcomeText = styled.Text`
+export const Title = styled.Text`
   color: #f8f8ff;
   font-size: 30px;
   font-weight: bold;
@@ -32,7 +32,7 @@ export const WelcomeText = styled.Text`
   margin-right: 45%;
 `;
 
-export const WelcomeText2 = styled.Text`
+export const Subtitle = styled.Text`
   color: #f8f8ff;
   margin-top: 20px;
   font-size: 20px;

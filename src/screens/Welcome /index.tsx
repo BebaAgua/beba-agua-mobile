@@ -5,8 +5,8 @@ import {
   Container,
   ContainerColor1,
   ContainerColor2,
-  WelcomeText,
-  WelcomeText2,
+  Title,
+  Subtitle,
   LoginButton,
   LoginButtonText,
 } from "./styles";
@@ -21,21 +21,25 @@ export function Welcome(props: WelcomeProps) {
     navigation.navigate("Login");
   };
   const handleScreenRegister = () => {
-    navigation.navigate("Register");
+    navigation.navigate("SignUp");
   };
 
   return (
     <Container>
       <StatusBar backgroundColor="#00bfff" barStyle="light-content" />
       <ContainerColor1>
-        <WelcomeText>Bem vindo ao Beba Água!</WelcomeText>
-        <WelcomeText2>
+        <Title>Bem vindo ao Beba Água!</Title>
+        <Subtitle>
           Vamos juntos manter o hábito de ingerir a quantidade correta de água
           diariamente.
-        </WelcomeText2>
+        </Subtitle>
       </ContainerColor1>
       <ContainerColor2>
-        <Button title="Criar uma conta" onPress={handleScreenRegister}></Button>
+        <Button
+          title="Criar uma conta"
+          onPress={handleScreenRegister}
+          size={280}
+        ></Button>
         <LoginButton onPress={handleScreenLogin}>
           <LoginButtonText>Entrar na minha conta</LoginButtonText>
         </LoginButton>

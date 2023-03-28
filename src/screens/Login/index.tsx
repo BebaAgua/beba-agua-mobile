@@ -1,9 +1,10 @@
-import { Text, View } from "react-native";
+import { StatusBar } from "react-native";
+import { Container } from "./styles";
 
 export function Login() {
   return (
-    <View>
-      <Text>Login</Text>
-    </View>
+    <Container>
+      <StatusBar barStyle="dark-content" backgroundColor="#f8f8ff" />
+    </Container>
   );
 }

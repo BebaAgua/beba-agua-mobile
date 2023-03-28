@@ -1,4 +1,4 @@
-import { TextInput } from "react-native";
+import { TextInput, TouchableOpacity } from "react-native";
 import styled, { css } from "styled-components/native";
 
 interface Props {
