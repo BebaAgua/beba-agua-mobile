@@ -1,5 +1,9 @@
 import styled from "styled-components/native";
 
+export const Scroll = styled.ScrollView`
+  max-height: 400px;
+`;
+
 export const Container = styled.View`
   width: 100%;
   margin-top: 64px;
@@ -11,6 +15,7 @@ export const Container = styled.View`
 export const ContainerButton = styled.View`
   width: 100%;
   margin-top: 20px;
+  margin-bottom: 40px;
   justify-content: center;
   align-items: center;
 `;

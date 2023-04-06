@@ -1,15 +1,14 @@
-import React from "react";
 import {
   Keyboard,
   KeyboardAvoidingView,
   StatusBar,
   TouchableWithoutFeedback,
 } from "react-native";
-import { FormSignUp } from "../../components/FormSignUp";
 import { Header } from "../../components/Header";
 import { Container } from "./styles";
+import { FormForgotPassword } from "../../components/FormForgotPassword";
 
-export function SignUp() {
+export function ForgotPassword() {
   return (
     <Container>
       <StatusBar barStyle="dark-content" backgroundColor="#f8f8ff" />
@@ -17,10 +16,10 @@ export function SignUp() {
         <KeyboardAvoidingView behavior="position" enabled>
           <>
             <Header
-              title="Crie sua conta!"
-              subtitle={`Faça seu cadastro e \ncomece a hidratar-se \nagora mesmo.`}
+              title={`Esqueceu sua \nsenha?`}
+              subtitle={`Não tem problema,\né só cadastrar uma nova. \nSó pedimos um email válido.`}
             />
-            <FormSignUp />
+            <FormForgotPassword />
           </>
         </KeyboardAvoidingView>
       </TouchableWithoutFeedback>

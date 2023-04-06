@@ -41,7 +41,7 @@ export function Welcome(props: WelcomeProps) {
           size={280}
         ></Button>
         <LoginButton onPress={handleScreenLogin}>
-          <LoginButtonText>Entrar na minha conta</LoginButtonText>
+          <LoginButtonText>Entrar com minha conta</LoginButtonText>
         </LoginButton>
       </ContainerColor2>
     </Container>
