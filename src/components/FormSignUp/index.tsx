@@ -39,9 +39,7 @@ export function FormSignUp() {
     resolver: yupResolver(schema),
   });
 
-  function handleUserRegister(data: FormData) {
-    console.log(data);
-  }
+  function handleUserRegister(data: FormData) {}
 
   return (
     <>
