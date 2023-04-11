@@ -12,6 +12,7 @@ export const ViewContainerIcon = styled.View`
   padding: 20px;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 `;
 
 export const TextIcon = styled.Text`
@@ -26,10 +27,13 @@ export const ViewContainer = styled.View`
   padding: 20px;
   border-radius: 10px;
   align-items: center;
+  justify-content: center;
 `;
 
 export const TextError = styled.Text`
   font-size: 18px;
   margin-bottom: 20px;
   color: #333766;
+  align-items: center;
+  text-align: center;
 `;

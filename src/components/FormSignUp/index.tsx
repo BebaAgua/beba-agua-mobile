@@ -1,10 +1,16 @@
-import { Keyboard } from "react-native";
-import Button from "../Button";
-import { ControlledInput } from "../ControlledInput";
-import { Container, ContainerButton, Scroll } from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Keyboard } from "react-native";
+
+import Button from "../Button";
+import { ControlledInput } from "../ControlledInput";
+import { Container, ContainerButton, Scroll } from "./styles";
+import { ModalError } from "../ModalError";
 
 type FormData = {
   name: string;
@@ -15,6 +21,9 @@ type FormData = {
   age: number;
 };
 
+interface ErrorProps {
+  message: string;
+}
 const schema = yup.object({
   name: yup.string().required("Informe seu nome."),
   email: yup.string().email("E-mail inválido!").required("Informe o E-mail."),
@@ -31,6 +40,13 @@ const schema = yup.object({
 });
 
 export function FormSignUp() {
+  const [error, setError] = useState<ErrorProps>({ message: "" });
+  const navigation = useNavigation();
+
+  const showError = (message: string) => {
+    setError({ message });
+  };
+
   const {
     control,
     handleSubmit,
@@ -39,10 +55,48 @@ export function FormSignUp() {
     resolver: yupResolver(schema),
   });
 
-  function handleUserRegister(data: FormData) {}
+  async function handleUserRegister(data: FormData) {
+    try {
+      const response = await axios.post(
+        "http://192.168.1.101:3000/register",
+        data
+      );
+      const token = response.data.token;
+      if (token) {
+        await AsyncStorage.setItem("token", token);
+        navigation.reset({ routes: [{ name: "Main" as never }] });
+      } else {
+        showError("Não foi possível obter o token de acesso.");
+      }
+    } catch (error: any) {
+      if (error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        showError(
+          "Este email já foi cadatrado anteriormente no app, faça seu login!"
+        );
+      } else if (error.request) {
+        console.log(error.request);
+        showError(
+          "Não foi possível conectar ao servidor. Tente novamente mais tarde."
+        );
+      } else {
+        console.log("Error", error.message);
+        showError(
+          "Ocorreu um erro inesperado. Verifique sua conexão e tente novamente."
+        );
+      }
+    }
+  }
 
   return (
     <>
+      {error.message && (
+        <ModalError
+          errorMessage={error.message}
+          onClose={() => setError({ message: "" })}
+        />
+      )}
       <Scroll showsVerticalScrollIndicator={false}>
         <Container>
           <ControlledInput
@@ -80,7 +134,7 @@ export function FormSignUp() {
           <ControlledInput
             name="weight"
             control={control}
-            maxLength={3}
+            maxLength={6}
             icon="balance-scale"
             placeholder="Informe seu peso"
             keyboardType="numeric"

@@ -1,33 +1,38 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
 
-import { Login } from "../screens/Login";
-import { SignUp } from "../screens/SignUp";
 import { Welcome } from "../screens/Welcome ";
+import { SignUp } from "../screens/SignUp";
+import { Login } from "../screens/Login";
 import { ForgotPassword } from "../screens/ForgotPassword";
 import { Main } from "../screens/Main";
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
+async function getInitialScreen() {
+  const token = await AsyncStorage.getItem("token");
+  console.log(token);
+  return token ? "Main" : "Welcome";
+}
+
 export function StackRoutes() {
-  const navigation = useNavigation();
+  const [initialScreen, setInitialScreen] = useState<string | null>(null);
 
   useEffect(() => {
     async function checkToken() {
-      const token = await AsyncStorage.getItem("token");
-      if (token) {
-        navigation.reset({ routes: [{ name: "Main" as never }] });
-      } else {
-        navigation.reset({ routes: [{ name: "Welcome" as never }] });
-      }
+      const screen = await getInitialScreen();
+      setInitialScreen(screen);
     }
     checkToken();
   }, []);
 
+  if (!initialScreen) {
+    return null;
+  }
+
   return (
-    <Navigator>
+    <Navigator initialRouteName={initialScreen as string}>
       <Screen
         name="Welcome"
         component={Welcome}

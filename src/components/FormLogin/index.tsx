@@ -54,6 +54,7 @@ export function FormLogin() {
       const token = response.data.token;
       if (token) {
         await AsyncStorage.setItem("token", token);
+        console.log(token);
         navigation.reset({ routes: [{ name: "Main" as never }] });
       } else {
         showError("Não foi possível obter o token de acesso.");
