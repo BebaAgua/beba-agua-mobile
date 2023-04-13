@@ -1,5 +1,10 @@
 # Projeto Beba Água (Mobile)
 
+![GitHub top language](https://img.shields.io/github/languages/top/BebaAgua/beba-agua-mobile)
+![GitHub repo size](https://img.shields.io/github/repo-size/BebaAgua/beba-agua-mobile)
+![GitHub language count](https://img.shields.io/github/languages/count/BebaAgua/beba-agua-mobile)
+![GitHub last commit](https://img.shields.io/github/last-commit/BebaAgua/beba-agua-mobile)
+
 <div align="center">
 
 ![logo](https://user-images.githubusercontent.com/128413495/231587927-8e673273-8f69-4007-848e-e521e100075c.jpg)
