@@ -17,7 +17,7 @@ type FormData = {
   email: string;
   password: string;
   confirm_password: string;
-  weight: string;
+  weight: number;
   age: number;
 };
 
@@ -35,7 +35,7 @@ const schema = yup.object({
     .string()
     .oneOf([yup.ref("password")], "A senha de confirmação não confere!")
     .required("Informe sua confirmação de senha"),
-  weight: yup.string().required("Informe seu peso").min(0),
+  weight: yup.number().required("Informe seu peso").min(0),
   age: yup.number().required("Informe sua idade").min(0),
 });
 
