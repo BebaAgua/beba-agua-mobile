@@ -8,3 +8,8 @@ export const Container = styled.View`
   justify-content: center;
   background-color: #f8f8ff;
 `;
+
+export const Test = styled.Text`
+  color: red;
+  font-size: 20px;
+`;

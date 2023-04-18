@@ -1,9 +1,11 @@
 import { StatusBar } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { Container } from "./styles";
+import { Container, Test } from "./styles";
 import Button from "../../components/Button";
 import { useNavigation } from "@react-navigation/native";
+import UserContext from "../../contexts/UserContext";
+import { useContext } from "react";
 
 const removeToken = async () => {
   try {
@@ -14,6 +16,7 @@ const removeToken = async () => {
 };
 
 export function Main() {
+  const { user } = useContext(UserContext);
   const navigation = useNavigation();
 
   const handleLogout = () => {
@@ -25,6 +28,10 @@ export function Main() {
     <Container>
       <StatusBar barStyle="dark-content" backgroundColor="#f8f8ff" />
       <Button title="Sair" size={300} color="#333766" onPress={handleLogout} />
+      <Test>{user?.name}</Test>
+      <Test>{user?.email}</Test>
+      <Test>{user?.age}</Test>
+      <Test>{user?.weight}</Test>
     </Container>
   );
 }

@@ -12,7 +12,6 @@ const { Screen, Navigator } = createNativeStackNavigator();
 
 async function getInitialScreen() {
   const token = await AsyncStorage.getItem("token");
-  console.log(token);
   return token ? "Main" : "Welcome";
 }
 

@@ -4,13 +4,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { Keyboard } from "react-native";
 import Button from "../Button";
 import { ControlledInput } from "../ControlledInput";
 import { Container, ContainerButton } from "./styles";
 import { ModalError } from "../ModalError";
+import UserContext from "../../contexts/UserContext";
 
 type FormData = {
   email: string;
@@ -30,6 +31,7 @@ const schema = yup.object({
 });
 
 export function FormLogin() {
+  const { setUser } = useContext(UserContext);
   const [error, setError] = useState<ErrorProps>({ message: "" });
   const navigation = useNavigation();
 
@@ -52,9 +54,12 @@ export function FormLogin() {
         data
       );
       const token = response.data.token;
-      if (token) {
+      const user = response.data.user;
+      if (token && user) {
         await AsyncStorage.setItem("token", token);
-        console.log(token);
+        await AsyncStorage.setItem("user", JSON.stringify(user));
+        setUser(user);
+        console.log(user);
         navigation.reset({ routes: [{ name: "Main" as never }] });
       } else {
         showError("Não foi possível obter o token de acesso.");
