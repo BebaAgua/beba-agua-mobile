@@ -30,7 +30,7 @@ Projeto Mobile de conclusão do curso de Análise e Desenvolvimento de Sistemas 
 - ✅ Tela de Boas vindas;
 - ✅ Cadastro de usuários;
 - ✅ Login de usuários;
-- Usar o Context Api do React para armazenar os dados do usuário para poder usá-los em várias partes do app;
+- ✅ Usar o Context Api do React para armazenar os dados do usuário para poder usá-los em várias partes do app;
 - Tela de esqueci minha senha;
 - Tela principal onde será mostrado a porcentagem que o usuário ingeriu de água no dia, sua meta e quanto falta para bater sua meta diária;
 - Push Notification para avisar o usuário a cada uma hora para ele fazer a ingestão de água;
