@@ -1,17 +1,17 @@
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Keyboard } from "react-native";
 
+import UserContext from "../../contexts/UserContext";
+import api from "../../services/api";
 import Button from "../Button";
 import { ControlledInput } from "../ControlledInput";
-import { Container, ContainerButton, Scroll } from "./styles";
 import { ModalError } from "../ModalError";
-import UserContext from "../../contexts/UserContext";
+import { Container, ContainerButton, Scroll } from "./styles";
 
 type FormData = {
   name: string;
@@ -59,10 +59,7 @@ export function FormSignUp() {
 
   async function handleUserRegister(data: FormData) {
     try {
-      const response = await axios.post(
-        "http://192.168.1.101:3000/register",
-        data
-      );
+      const response = await api.post("/register", data);
       const token = response.data.token;
       const user = response.data.user;
 
@@ -73,8 +70,8 @@ export function FormSignUp() {
         setUser(user);
 
         try {
-          const { data } = await axios.post(
-            "http://192.168.1.101:3000/water-intake-goals",
+          const { data } = await api.post(
+            "/water-intake-goals",
             {
               userId: user.id,
               age: user.age,

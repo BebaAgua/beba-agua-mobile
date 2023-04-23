@@ -3,15 +3,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
 import React, { useContext, useState } from "react";
-
 import { Keyboard } from "react-native";
+
+import UserContext from "../../contexts/UserContext";
+import api from "../../services/api";
 import Button from "../Button";
 import { ControlledInput } from "../ControlledInput";
-import { Container, ContainerButton } from "./styles";
 import { ModalError } from "../ModalError";
-import UserContext from "../../contexts/UserContext";
+import { Container, ContainerButton } from "./styles";
 
 type FormData = {
   email: string;
@@ -49,10 +49,7 @@ export function FormLogin() {
 
   async function handleUserLogin(data: FormData) {
     try {
-      const response = await axios.post(
-        "http://192.168.1.101:3000/login",
-        data
-      );
+      const response = await api.post("/login", data);
       const token = response.data.token;
       const user = response.data.user;
 
@@ -63,12 +60,9 @@ export function FormLogin() {
         setUser(user);
 
         try {
-          const { data } = await axios.get(
-            `http://192.168.1.101:3000/water-intake-goal/${user?.id}`,
-            {
-              headers: { Authorization: `Bearer ${user?.token}` },
-            }
-          );
+          const { data } = await api.get(`/water-intake-goal/${user?.id}`, {
+            headers: { Authorization: `Bearer ${user?.token}` },
+          });
           await AsyncStorage.setItem("goal", JSON.stringify(data.goalAmount));
           setGoal(data.goalAmount);
           console.log(data.goalAmount, "login");
