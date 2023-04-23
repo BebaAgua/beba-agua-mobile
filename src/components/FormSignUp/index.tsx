@@ -41,7 +41,7 @@ const schema = yup.object({
 });
 
 export function FormSignUp() {
-  const { setUser } = useContext(UserContext);
+  const { setUser, setGoal } = useContext(UserContext);
   const [error, setError] = useState<ErrorProps>({ message: "" });
   const navigation = useNavigation();
 
@@ -69,26 +69,44 @@ export function FormSignUp() {
       if (token && user) {
         await AsyncStorage.setItem("token", token);
         await AsyncStorage.setItem("user", JSON.stringify(user));
+        user.token = token;
         setUser(user);
-        console.log(user);
+
+        try {
+          const { data } = await axios.post(
+            "http://192.168.1.101:3000/water-intake-goals",
+            {
+              userId: user.id,
+              age: user.age,
+              weight: user.weight,
+            },
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+          setGoal(data.goalAmount);
+          await AsyncStorage.setItem("goal", JSON.stringify(data.goalAmount));
+          console.log(data.goalAmount, "Sign Up");
+        } catch (error) {
+          showError(
+            "Ocorreu um erro ao obter a meta de ingestão de água. Verifique sua conexão e tente novamente."
+          );
+        }
+
         navigation.reset({ routes: [{ name: "Main" as never }] });
       } else {
         showError("Não foi possível obter o token de acesso.");
       }
     } catch (error: any) {
       if (error.response) {
-        console.log(error.response.data);
-        console.log(error.response.status);
         showError(
           "Este email já foi cadatrado anteriormente no app, faça seu login!"
         );
       } else if (error.request) {
-        console.log(error.request);
         showError(
           "Não foi possível conectar ao servidor. Tente novamente mais tarde."
         );
       } else {
-        console.log("Error", error.message);
         showError(
           "Ocorreu um erro inesperado. Verifique sua conexão e tente novamente."
         );

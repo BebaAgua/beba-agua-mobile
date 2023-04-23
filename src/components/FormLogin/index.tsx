@@ -31,7 +31,7 @@ const schema = yup.object({
 });
 
 export function FormLogin() {
-  const { setUser } = useContext(UserContext);
+  const { setUser, setGoal } = useContext(UserContext);
   const [error, setError] = useState<ErrorProps>({ message: "" });
   const navigation = useNavigation();
 
@@ -47,7 +47,7 @@ export function FormLogin() {
     resolver: yupResolver(schema),
   });
 
-  async function handleUserRegister(data: FormData) {
+  async function handleUserLogin(data: FormData) {
     try {
       const response = await axios.post(
         "http://192.168.1.101:3000/login",
@@ -55,11 +55,30 @@ export function FormLogin() {
       );
       const token = response.data.token;
       const user = response.data.user;
+
       if (token && user) {
         await AsyncStorage.setItem("token", token);
         await AsyncStorage.setItem("user", JSON.stringify(user));
+        user.token = token;
         setUser(user);
-        console.log(user);
+
+        try {
+          const { data } = await axios.get(
+            `http://192.168.1.101:3000/water-intake-goal/${user?.id}`,
+            {
+              headers: { Authorization: `Bearer ${user?.token}` },
+            }
+          );
+          await AsyncStorage.setItem("goal", JSON.stringify(data.goalAmount));
+          setGoal(data.goalAmount);
+          console.log(data.goalAmount, "login");
+        } catch (error) {
+          console.log(error);
+          showError(
+            "Não foi possível obter a meta diária de ingestão de água."
+          );
+        }
+
         navigation.reset({ routes: [{ name: "Main" as never }] });
       } else {
         showError("Não foi possível obter o token de acesso.");
@@ -116,7 +135,7 @@ export function FormLogin() {
         <Button
           title="Entrar"
           onPress={() => {
-            handleSubmit(handleUserRegister)();
+            handleSubmit(handleUserLogin)();
             Keyboard.dismiss();
           }}
           size={300}
