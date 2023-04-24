@@ -2,12 +2,11 @@ import styled from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
-  background-color: #00bfff;
 `;
 
 export const ContainerColor1 = styled.View`
   flex: 3;
-  background-color: #00bfff;
+  background-color: ${(props) => props.theme.colors.primary};
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -15,7 +14,7 @@ export const ContainerColor1 = styled.View`
 
 export const ContainerColor2 = styled.View`
   flex: 1;
-  background-color: #f8f8ff;
+  background-color: ${(props) => props.theme.colors.background};
   margin-top: -25px;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
@@ -25,30 +24,31 @@ export const ContainerColor2 = styled.View`
 `;
 
 export const Title = styled.Text`
-  color: #f8f8ff;
+  color: ${(props) => props.theme.colors.text};
+  font-family: ${(props) => props.theme.fonts.medium};
   font-size: 30px;
-  font-weight: bold;
   margin-left: 20px;
   margin-right: 45%;
 `;
 
 export const Subtitle = styled.Text`
-  color: #f8f8ff;
+  color: ${(props) => props.theme.colors.text};
+  font-family: ${(props) => props.theme.fonts.regular};
   margin-top: 20px;
-  font-size: 20px;
+  font-size: 18px;
   margin-left: 20px;
   margin-right: 45%;
 `;
 
 export const LoginButton = styled.TouchableOpacity`
-  background: #f8f8ff;
-  border-color: #f8f8ff;
+  background-color: ${(props) => props.theme.colors.background};
+  border-color: ${(props) => props.theme.colors.shape};
   padding: 30px;
 `;
 
 export const LoginButtonText = styled.Text`
-  color: #2196f3;
-  font-size: 18px;
   margin-left: 16px;
-  font-weight: bold;
+  color: ${(props) => props.theme.colors.secondary};
+  font-family: ${(props) => props.theme.fonts.medium};
+  font-size: 16px;
 `;

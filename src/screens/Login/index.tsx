@@ -11,6 +11,7 @@ import {
   ForgotPasswordButtonText,
 } from "./styles";
 import { FormLogin } from "../../components/FormLogin";
+import theme from "../../global/styles/theme";
 
 interface ForgotPasswordProps {
   navigation: any;
@@ -24,7 +25,10 @@ export function Login(props: ForgotPasswordProps) {
 
   return (
     <Container>
-      <StatusBar barStyle="dark-content" backgroundColor="#f8f8ff" />
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor={theme.colors.background}
+      />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView behavior="position" enabled>
           <>

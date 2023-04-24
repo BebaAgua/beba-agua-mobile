@@ -20,27 +20,29 @@ export const IconContainer = styled.View<Props>`
   justify-content: center;
   align-items: center;
   margin-right: 2px;
-  background-color: #f8f8ff;
-  border: #2196f3
-    ${({ isFocused }) =>
-      isFocused &&
-      css`
-        border-bottom-width: 2px;
-        border: #333766;
-      `};
+  background-color: ${(props) => props.theme.colors.background};
+  border: ${(props) => props.theme.colors.secondary};
+  ${({ isFocused }) =>
+    isFocused &&
+    css`
+      border-bottom-width: 2px;
+      border: ${(props) => props.theme.colors.focus};
+    `};
 `;
 
 export const InputText = styled(TextInput)<Props>`
   flex: 1;
-  background-color: #f8f8ff;
-  border: #2196f3;
+  background-color: ${(props) => props.theme.colors.background};
+  font-family: ${(props) => props.theme.fonts.regular};
+  font-size: 12px;
+  border: ${(props) => props.theme.colors.secondary};
   border-radius: 5px;
-  color: #404040;
+  color: ${(props) => props.theme.colors.textInput};
   padding: 0 23px;
   ${({ isFocused }) =>
     isFocused &&
     css`
       border-bottom-width: 2px;
-      border: #333766;
+      border: ${(props) => props.theme.colors.focus};
     `};
 `;

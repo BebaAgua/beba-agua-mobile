@@ -5,6 +5,7 @@ import { Container, ContainerButton } from "./styles";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import theme from "../../global/styles/theme";
 
 type FormData = {
   email: string;
@@ -77,7 +78,7 @@ export function FormForgotPassword() {
             Keyboard.dismiss();
           }}
           size={300}
-          color="#333766"
+          color={theme.colors.formButton}
         />
       </ContainerButton>
     </>

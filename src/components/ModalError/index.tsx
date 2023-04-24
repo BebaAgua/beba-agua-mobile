@@ -12,6 +12,7 @@ import {
   TextError,
   TextIcon,
 } from "./styles";
+import theme from "../../global/styles/theme";
 
 interface ErrorModalProps {
   errorMessage: string;
@@ -36,7 +37,7 @@ export function ModalError({ onClose, errorMessage }: ErrorModalProps) {
             <FontAwesome
               name="exclamation-triangle"
               size={24}
-              color="#2196f3"
+              color={theme.colors.secondary}
             />
             <TextIcon>Atenção!</TextIcon>
           </ViewContainerIcon>
@@ -45,7 +46,7 @@ export function ModalError({ onClose, errorMessage }: ErrorModalProps) {
             title="Fechar"
             onPress={handleClose}
             size={250}
-            color="#333766"
+            color={theme.colors.formButton}
           />
         </ViewContainer>
       </Container>

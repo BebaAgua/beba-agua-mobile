@@ -7,15 +7,15 @@ export const Container = styled.View`
 `;
 
 export const ForgotPasswordButton = styled.TouchableOpacity`
-  background: #f8f8ff;
-  border-color: #f8f8ff;
+  background: ${(props) => props.theme.colors.background};
+  border-color: ${(props) => props.theme.colors.background};
   padding: 10px;
   justify-content: center;
   align-items: center;
 `;
 
 export const ForgotPasswordButtonText = styled.Text`
-  color: #2196f3;
-  font-size: 18px;
-  font-weight: bold;
+  font-family: ${(props) => props.theme.fonts.medium};
+  font-size: 16px;
+  color: ${(props) => props.theme.colors.secondary};
 `;

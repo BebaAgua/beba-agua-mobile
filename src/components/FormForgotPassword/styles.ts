@@ -4,7 +4,7 @@ export const Container = styled.View`
   width: 100%;
   margin-top: 64px;
   margin-bottom: 16px;
-  background-color: #f8f8ff;
+  background-color: ${(props) => props.theme.colors.background};
   border-radius: 5px;
 `;
 

@@ -14,8 +14,9 @@ export const StyledTouchableOpacity = styled.TouchableOpacity<{
 `;
 
 export const StyledText = styled.Text`
-  color: #fff;
-  font-size: 18px;
+  color: ${(props) => props.theme.colors.text};
+  font-family: ${(props) => props.theme.fonts.regular};
+  font-size: 16px;
   text-align: center;
   justify-content: center;
 `;

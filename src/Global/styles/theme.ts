@@ -1,16 +1,27 @@
 export default {
   colors: {
-    primary: "#00bfff",
+    primary: "#3dbff2",
 
-    secondary: "#2196f3",
+    secondary: "#44A1F2",
+
+    button: "#447EF2",
+
+    formButton: "#02457a",
+
+    border: "#447ef2",
+
+    focus: "#02457a",
 
     success: "#12A454",
 
     attention: "#e83F5B",
 
     shape: "#f8f8ff",
-    title: "#363F5F",
+
     text: "#f8f8ff",
+
+    textInput: "#404040",
+
     background: "#f8f8ff",
   },
   fonts: {

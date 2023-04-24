@@ -8,11 +8,15 @@ import {
 import { FormSignUp } from "../../components/FormSignUp";
 import { Header } from "../../components/Header";
 import { Container } from "./styles";
+import theme from "../../global/styles/theme";
 
 export function SignUp() {
   return (
     <Container>
-      <StatusBar barStyle="dark-content" backgroundColor="#f8f8ff" />
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor={theme.colors.background}
+      />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView behavior="position" enabled>
           <>

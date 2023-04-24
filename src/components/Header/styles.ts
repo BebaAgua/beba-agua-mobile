@@ -13,13 +13,14 @@ export const TitleWrapper = styled.View`
 
 export const Title = styled.Text`
   font-size: 30px;
-  font-weight: bold;
-  color: #2196f3;
+  font-family: ${(props) => props.theme.fonts.medium};
+  color: ${(props) => props.theme.colors.secondary};
 `;
 
 export const Subtitle = styled.Text`
   font-size: 20px;
-  color: #2196f3;
+  font-family: ${(props) => props.theme.fonts.regular};
+  color: ${(props) => props.theme.colors.secondary};
   line-height: 25px;
 `;
 
@@ -27,5 +28,5 @@ export const BackButton = styled.TouchableOpacity`
   top: 0;
   left: 0;
   padding: 16px;
-  align-self: flex-end;
+  align-self: flex-start;
 `;

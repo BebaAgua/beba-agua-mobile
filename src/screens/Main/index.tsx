@@ -5,6 +5,7 @@ import Button from "../../components/Button";
 import { useNavigation } from "@react-navigation/native";
 import UserContext from "../../contexts/UserContext";
 import { useContext } from "react";
+import theme from "../../global/styles/theme";
 
 const removeTokeAndUser = async () => {
   try {
@@ -29,7 +30,10 @@ export function Main() {
 
   return (
     <Container>
-      <StatusBar barStyle="dark-content" backgroundColor="#f8f8ff" />
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor={theme.colors.background}
+      />
       <Button title="Sair" size={300} color="#333766" onPress={handleLogout} />
       <Test>{goal} ml</Test>
       <Test>{user?.name}</Test>

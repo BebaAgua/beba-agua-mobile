@@ -2,6 +2,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { TextInputProps } from "react-native";
 import { Container, IconContainer, InputText } from "./styles";
+import theme from "../../global/styles/theme";
 
 export type InputProps = TextInputProps & {
   icon: React.ComponentProps<typeof FontAwesome>["name"];
@@ -27,12 +28,16 @@ export function Input({ icon, value, ...rest }: InputProps) {
         <FontAwesome
           name={icon}
           size={24}
-          color={isFocused || isFilled ? "#333766" : "#2196f3"}
+          color={
+            isFocused || isFilled ? theme.colors.focus : theme.colors.secondary
+          }
         />
       </IconContainer>
 
       <InputText
-        placeholderTextColor="#2196f3"
+        placeholderTextColor={
+          isFocused || isFilled ? theme.colors.focus : theme.colors.secondary
+        }
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         isFocused={isFocused}

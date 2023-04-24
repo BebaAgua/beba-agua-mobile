@@ -16,14 +16,14 @@ export const ViewContainerIcon = styled.View`
 `;
 
 export const TextIcon = styled.Text`
-  color: #2196f3;
+  color: ${(props) => props.theme.colors.secondary};
   font-size: 24px;
   font-weight: bold;
   margin-left: 10px;
 `;
 
 export const ViewContainer = styled.View`
-  background-color: #f8f8ff;
+  background-color: ${(props) => props.theme.colors.background};
   padding: 20px;
   border-radius: 10px;
   align-items: center;
@@ -31,9 +31,10 @@ export const ViewContainer = styled.View`
 `;
 
 export const TextError = styled.Text`
-  font-size: 18px;
+  font-size: 14px;
+  font-family: ${(props) => props.theme.fonts.regular};
   margin-bottom: 20px;
-  color: #333766;
+  color: ${(props) => props.theme.colors.textInput};
   align-items: center;
   text-align: center;
 `;

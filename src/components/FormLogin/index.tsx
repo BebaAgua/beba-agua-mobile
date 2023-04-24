@@ -12,6 +12,7 @@ import Button from "../Button";
 import { ControlledInput } from "../ControlledInput";
 import { ModalError } from "../ModalError";
 import { Container, ContainerButton } from "./styles";
+import theme from "../../global/styles/theme";
 
 type FormData = {
   email: string;
@@ -133,7 +134,7 @@ export function FormLogin() {
             Keyboard.dismiss();
           }}
           size={300}
-          color="#333766"
+          color={theme.colors.formButton}
         />
       </ContainerButton>
     </>

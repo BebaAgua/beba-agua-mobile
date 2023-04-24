@@ -2,6 +2,7 @@ import Icon from "@expo/vector-icons/FontAwesome";
 import { BackButton, Container, Subtitle, Title, TitleWrapper } from "./styles";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
+import theme from "../../global/styles/theme";
 
 interface HeaderProps {
   title: string;
@@ -19,7 +20,7 @@ export function Header({ title, subtitle, onBackPress }: HeaderProps) {
       <TitleWrapper>
         <Title>{title}</Title>
         <BackButton onPress={() => navigation.goBack()}>
-          <Icon name="arrow-left" size={24} color="#2196f3" />
+          <Icon name="arrow-left" size={24} color={theme.colors.secondary} />
         </BackButton>
       </TitleWrapper>
       {subtitleLines.map((line, index) => (

@@ -10,6 +10,7 @@ import {
   LoginButton,
   LoginButtonText,
 } from "./styles";
+import theme from "../../global/styles/theme";
 
 interface WelcomeProps {
   navigation: any;
@@ -26,7 +27,10 @@ export function Welcome(props: WelcomeProps) {
 
   return (
     <Container>
-      <StatusBar backgroundColor="#00bfff" barStyle="light-content" />
+      <StatusBar
+        backgroundColor={theme.colors.primary}
+        barStyle="light-content"
+      />
       <ContainerColor1>
         <Title>Bem vindo ao Beba Água!</Title>
         <Subtitle>
