@@ -1,6 +1,5 @@
 import Icon from "@expo/vector-icons/FontAwesome";
 import { BackButton, Container, Subtitle, Title, TitleWrapper } from "./styles";
-import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import theme from "../../global/styles/theme";
 

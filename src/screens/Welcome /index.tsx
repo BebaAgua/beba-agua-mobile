@@ -28,7 +28,7 @@ export function Welcome(props: WelcomeProps) {
   return (
     <Container>
       <StatusBar
-        backgroundColor={theme.colors.primary}
+        backgroundColor={theme.colors.waves}
         barStyle="light-content"
       />
       <ContainerColor1>

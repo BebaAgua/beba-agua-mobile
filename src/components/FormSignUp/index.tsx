@@ -10,7 +10,7 @@ import UserContext from "../../contexts/UserContext";
 import api from "../../services/api";
 import Button from "../Button";
 import { ControlledInput } from "../ControlledInput";
-import { ModalError } from "../ModalError";
+import { ErrorModal } from "../ErrorModal";
 import { Container, ContainerButton, Scroll } from "./styles";
 import theme from "../../global/styles/theme";
 
@@ -115,7 +115,7 @@ export function FormSignUp() {
   return (
     <>
       {error.message && (
-        <ModalError
+        <ErrorModal
           errorMessage={error.message}
           onClose={() => setError({ message: "" })}
         />

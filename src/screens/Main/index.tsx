@@ -1,32 +1,185 @@
-import { StatusBar } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Container, Test } from "./styles";
-import Button from "../../components/Button";
-import { useNavigation } from "@react-navigation/native";
-import UserContext from "../../contexts/UserContext";
-import { useContext } from "react";
-import theme from "../../global/styles/theme";
+import Animated, {
+  useAnimatedProps,
+  useSharedValue,
+  interpolate,
+  withTiming,
+  withRepeat,
+  Easing,
+} from "react-native-reanimated";
+import { useContext, useEffect, useState } from "react";
+import moment from "moment";
 
-const removeTokeAndUser = async () => {
-  try {
-    await AsyncStorage.removeItem("token");
-    await AsyncStorage.removeItem("user");
-    await AsyncStorage.removeItem("goal");
-  } catch (error) {
-    console.log("Error removing token, user or goal", error);
-  }
-};
+import { StatusBar } from "react-native";
+import { Circle, Path } from "react-native-svg";
+import { Fontisto } from "@expo/vector-icons";
+
+import theme from "../../global/styles/theme";
+import { MainHeader } from "../../components/MainHeader";
+import {
+  Container,
+  FooterContainer,
+  FooterButton,
+  AbsoluteCircle,
+  WavesSvg,
+  width,
+} from "./styles";
+import UserContext from "../../contexts/UserContext";
+import WaterModal from "../../components/WaterModal";
+import { CongratulationModal } from "../../components/CongratulationModal";
+
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+const AnimatedPath = Animated.createAnimatedComponent(Path);
+const AnimatedSvg = Animated.createAnimatedComponent(WavesSvg);
 
 export function Main() {
-  const { goal, user } = useContext(UserContext);
-  console.log("Goal: ", goal);
-  const navigation = useNavigation();
+  const [percentage, setPercentage] = useState(0);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalShown, setmodalShown] = useState(false);
 
-  const handleLogout = () => {
-    removeTokeAndUser();
-    console.log("User logged out");
-    navigation.reset({ routes: [{ name: "Welcome" as never }] });
+  const { goal } = useContext(UserContext);
+
+  const heightAnimated = useSharedValue(100);
+  const waveAnimated = useSharedValue(5);
+  const mlAnimated = useSharedValue(0);
+  const buttonBorderAnimated = useSharedValue(0);
+  const buttonProps = useAnimatedProps(() => {
+    return {
+      cx: 60,
+      cy: 60,
+      r: 40,
+      strokeWidth: interpolate(
+        buttonBorderAnimated.value,
+        [0, 0.5, 1],
+        [17, 40, 17]
+      ),
+    };
+  });
+
+  const svgContainerProps = useAnimatedProps(() => {
+    return {
+      width,
+      height: heightAnimated.value,
+      viewBox: `0 0 ${width} ${heightAnimated.value}`,
+    };
+  });
+
+  const firstWaveProps = useAnimatedProps(() => {
+    return {
+      d: `
+        M 0 0
+        Q 45 ${waveAnimated.value} 90 0
+        T 180 0
+        T 270 0
+        T 360 0
+        T 900 0
+        T 540 0
+        V ${heightAnimated.value}
+        H 0
+        Z
+      `,
+    };
+  });
+
+  const secondWaveProps = useAnimatedProps(() => {
+    return {
+      d: `
+      M 0 0
+      Q 35 ${waveAnimated.value + 5} 70 0
+      T 140 0
+      T 210 0
+      T 280 0
+      T 350 0
+      T 420 0
+      V ${heightAnimated.value}
+      H 0
+      Z
+    `,
+    };
+  });
+
+  const resetValuesAtMidnight = () => {
+    console.log("Resetando valores...");
+    buttonBorderAnimated.value = 0;
+    waveAnimated.value = 5;
+    mlAnimated.value = 0;
+    heightAnimated.value = 100;
+    setPercentage(0);
   };
+
+  const setMidnightTimeout = () => {
+    const now = moment();
+    const midnight = moment().endOf("day");
+    const timeUntilMidnight = midnight.diff(now);
+
+    if (now.isBefore(midnight)) {
+      setTimeout(() => {
+        resetValuesAtMidnight();
+        setMidnightTimeout();
+      }, timeUntilMidnight);
+    }
+  };
+
+  useEffect(() => {
+    setMidnightTimeout();
+  }, []);
+
+  function handleDrink(mlToAdd: number | null) {
+    buttonBorderAnimated.value = withTiming(1, {
+      duration: 500,
+      easing: Easing.ease,
+    });
+
+    setModalVisible(true);
+
+    buttonBorderAnimated.value = 0;
+    waveAnimated.value = 5;
+
+    waveAnimated.value = withRepeat(
+      withTiming(17, {
+        duration: 500,
+        easing: Easing.ease,
+      }),
+      2,
+      true
+    );
+
+    if (mlToAdd === null) {
+      return;
+    }
+
+    mlAnimated.value = withTiming(mlAnimated.value + mlToAdd, {
+      duration: 200,
+      easing: Easing.ease,
+    });
+
+    if (goal === null) {
+      return;
+    }
+    const progress = (mlAnimated.value + mlToAdd) / goal;
+    const height = progress * 900 + 100;
+
+    heightAnimated.value = withTiming(height, {
+      duration: 1000,
+      easing: Easing.ease,
+    });
+    setPercentage(Math.floor(progress * 100));
+
+    setTimeout(() => {
+      setModalVisible(false);
+    }, 250);
+
+    if (progress >= 1 && !isModalVisible && !modalShown) {
+      setTimeout(() => {
+        setIsModalVisible(true);
+        setmodalShown(true);
+      }, 1000);
+    }
+  }
+
+  function handleCloseModal() {
+    setIsModalVisible(false);
+  }
 
   return (
     <Container>
@@ -34,9 +187,41 @@ export function Main() {
         barStyle="dark-content"
         backgroundColor={theme.colors.background}
       />
-      <Button title="Sair" size={300} color="#333766" onPress={handleLogout} />
-      <Test>{goal} ml</Test>
-      <Test>{user?.name}</Test>
+      <CongratulationModal
+        visible={isModalVisible}
+        onClose={handleCloseModal}
+      />
+      <WaterModal visible={modalVisible} onDrink={handleDrink} />
+      <MainHeader
+        ml={percentage === 0 ? 0 : Math.trunc(mlAnimated.value)}
+        percents={percentage}
+      />
+      <AnimatedSvg animatedProps={svgContainerProps}>
+        <AnimatedPath
+          animatedProps={firstWaveProps}
+          fill={theme.colors.secondary}
+          transform="translate(0, 10)"
+        />
+
+        <AnimatedPath
+          animatedProps={secondWaveProps}
+          fill={theme.colors.waves}
+          transform="translate(0, 15)"
+        />
+      </AnimatedSvg>
+      <FooterContainer>
+        <FooterButton onPress={() => handleDrink(null)}>
+          <AbsoluteCircle width={120} height={120}>
+            <AnimatedCircle
+              animatedProps={buttonProps}
+              fill={theme.colors.border}
+              stroke={theme.colors.secondary}
+              strokeOpacity={0.8}
+            />
+          </AbsoluteCircle>
+          <Fontisto name="blood-drop" size={40} color={theme.colors.shape} />
+        </FooterButton>
+      </FooterContainer>
     </Container>
   );
 }

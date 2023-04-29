@@ -5,7 +5,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import Button from "../Button";
 
 import {
-  ErrorModal,
+  ModalError,
   Container,
   ViewContainerIcon,
   ViewContainer,
@@ -19,7 +19,7 @@ interface ErrorModalProps {
   onClose?: () => void;
 }
 
-export function ModalError({ onClose, errorMessage }: ErrorModalProps) {
+export function ErrorModal({ onClose, errorMessage }: ErrorModalProps) {
   const [visible, setVisible] = useState(true);
 
   const handleClose = () => {
@@ -28,7 +28,7 @@ export function ModalError({ onClose, errorMessage }: ErrorModalProps) {
   };
 
   return (
-    <ErrorModal visible={visible} animationType="fade" transparent={true}>
+    <ModalError visible={visible} animationType="fade" transparent={true}>
       <StatusBar backgroundColor="rgba(0, 0, 0, 0.5)" barStyle="dark-content" />
 
       <Container>
@@ -50,6 +50,6 @@ export function ModalError({ onClose, errorMessage }: ErrorModalProps) {
           />
         </ViewContainer>
       </Container>
-    </ErrorModal>
+    </ModalError>
   );
 }

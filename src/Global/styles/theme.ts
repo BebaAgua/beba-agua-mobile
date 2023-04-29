@@ -4,6 +4,8 @@ export default {
 
     secondary: "#44A1F2",
 
+    waves: "#32BAFA",
+
     button: "#447EF2",
 
     formButton: "#02457a",

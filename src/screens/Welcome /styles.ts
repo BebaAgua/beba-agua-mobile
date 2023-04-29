@@ -5,8 +5,8 @@ export const Container = styled.View`
 `;
 
 export const ContainerColor1 = styled.View`
-  flex: 3;
-  background-color: ${(props) => props.theme.colors.primary};
+  flex: 2;
+  background-color: ${(props) => props.theme.colors.waves};
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -27,7 +27,7 @@ export const Title = styled.Text`
   color: ${(props) => props.theme.colors.text};
   font-family: ${(props) => props.theme.fonts.medium};
   font-size: 30px;
-  margin-left: 20px;
+  margin-left: 19px;
   margin-right: 45%;
 `;
 
@@ -36,7 +36,7 @@ export const Subtitle = styled.Text`
   font-family: ${(props) => props.theme.fonts.regular};
   margin-top: 20px;
   font-size: 18px;
-  margin-left: 20px;
+  margin-left: 19px;
   margin-right: 45%;
 `;
 
