@@ -27,7 +27,7 @@ export const Title = styled.Text`
   color: ${(props) => props.theme.colors.text};
   font-family: ${(props) => props.theme.fonts.medium};
   font-size: 30px;
-  margin-left: 19px;
+  margin-left: 5%;
   margin-right: 45%;
 `;
 
@@ -36,7 +36,7 @@ export const Subtitle = styled.Text`
   font-family: ${(props) => props.theme.fonts.regular};
   margin-top: 20px;
   font-size: 18px;
-  margin-left: 19px;
+  margin-left: 5%;
   margin-right: 45%;
 `;
 

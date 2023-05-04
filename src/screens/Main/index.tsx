@@ -6,12 +6,14 @@ import Animated, {
   withRepeat,
   Easing,
 } from "react-native-reanimated";
-import { useContext, useEffect, useState } from "react";
+
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import moment from "moment";
 
 import { StatusBar } from "react-native";
 import { Circle, Path } from "react-native-svg";
 import { Fontisto } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import theme from "../../global/styles/theme";
 import { MainHeader } from "../../components/MainHeader";
@@ -98,13 +100,61 @@ export function Main() {
     };
   });
 
-  const resetValuesAtMidnight = () => {
+  useEffect(() => {
+    const loadAnimationState = async () => {
+      const heightAnimatedValue = await AsyncStorage.getItem(
+        "heightAnimatedValue"
+      );
+      const waveAnimatedValue = await AsyncStorage.getItem("waveAnimatedValue");
+      const mlAnimatedValue = await AsyncStorage.getItem("mlAnimatedValue");
+      const percentageValue = await AsyncStorage.getItem("percentageValue");
+
+      heightAnimated.value = heightAnimatedValue
+        ? parseFloat(heightAnimatedValue)
+        : 100;
+      waveAnimated.value = waveAnimatedValue
+        ? parseFloat(waveAnimatedValue)
+        : 5;
+      mlAnimated.value = mlAnimatedValue ? parseFloat(mlAnimatedValue) : 0;
+      setPercentage(parseFloat(percentageValue ?? "0"));
+    };
+
+    loadAnimationState();
+  }, []);
+
+  useEffect(() => {
+    const saveAnimationState = async () => {
+      setTimeout(async () => {
+        await AsyncStorage.setItem(
+          "heightAnimatedValue",
+          heightAnimated.value.toString()
+        );
+        await AsyncStorage.setItem(
+          "waveAnimatedValue",
+          waveAnimated.value.toString()
+        );
+        await AsyncStorage.setItem(
+          "mlAnimatedValue",
+          mlAnimated.value.toString()
+        );
+        await AsyncStorage.setItem("percentageValue", percentage.toString());
+      }, 500);
+    };
+
+    saveAnimationState();
+  }, [
+    heightAnimated.value,
+    waveAnimated.value,
+    mlAnimated.value,
+    setPercentage,
+  ]);
+
+  const resetValuesAtMidnight = async () => {
     console.log("Resetando valores...");
-    buttonBorderAnimated.value = 0;
-    waveAnimated.value = 5;
-    mlAnimated.value = 0;
-    heightAnimated.value = 100;
-    setPercentage(0);
+    await AsyncStorage.removeItem("heightAnimatedValue");
+    await AsyncStorage.removeItem("waveAnimatedValue");
+    await AsyncStorage.removeItem("mlAnimatedValue");
+    await AsyncStorage.removeItem("percentageValue");
   };
 
   const setMidnightTimeout = () => {
