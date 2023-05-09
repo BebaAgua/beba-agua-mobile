@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Welcome } from "../screens/Welcome ";
@@ -7,12 +7,13 @@ import { SignUp } from "../screens/SignUp";
 import { Login } from "../screens/Login";
 import { ForgotPassword } from "../screens/ForgotPassword";
 import { Main } from "../screens/Main";
+import { DrawerRoutes } from "./DrawerRoutes";
 
 const { Screen, Navigator } = createNativeStackNavigator();
 
 async function getInitialScreen() {
   const token = await AsyncStorage.getItem("token");
-  return token ? "Main" : "Welcome";
+  return token ? "DrawerRoutes" : "Welcome";
 }
 
 export function StackRoutes() {
@@ -48,7 +49,12 @@ export function StackRoutes() {
         component={ForgotPassword}
         options={{ headerShown: false }}
       />
-      <Screen name="Main" component={Main} options={{ headerShown: false }} />
+
+      <Screen
+        name="DrawerRoutes"
+        component={DrawerRoutes}
+        options={{ headerShown: false }}
+      />
     </Navigator>
   );
 }

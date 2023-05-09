@@ -74,7 +74,7 @@ export function FormLogin() {
           );
         }
 
-        navigation.reset({ routes: [{ name: "Main" as never }] });
+        navigation.reset({ routes: [{ name: "DrawerRoutes" as never }] });
       } else {
         showError("Não foi possível obter o token de acesso.");
       }

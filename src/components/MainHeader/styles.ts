@@ -18,10 +18,9 @@ export const WelcomeTitle = styled.Text`
   color: ${(props) => props.theme.colors.secondary};
 `;
 
-export const BackButton = styled.TouchableOpacity`
-  top: 0;
-  left: 0;
+export const MenuButton = styled.TouchableOpacity`
   align-self: flex-start;
+  padding: 5px;
 `;
 
 export const ContainerGoal = styled.View`

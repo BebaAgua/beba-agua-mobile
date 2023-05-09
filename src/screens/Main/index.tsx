@@ -7,7 +7,7 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import moment from "moment";
 
 import { StatusBar } from "react-native";
@@ -138,7 +138,7 @@ export function Main() {
           mlAnimated.value.toString()
         );
         await AsyncStorage.setItem("percentageValue", percentage.toString());
-      }, 500);
+      }, 2000);
     };
 
     saveAnimationState();
