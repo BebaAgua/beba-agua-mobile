@@ -1,7 +1,8 @@
 import { MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
-
 import { StatusBar } from "react-native";
 
+import UserContext from "../../contexts/UserContext";
+import theme from "../../global/styles/theme";
 import {
   Container,
   Content,
@@ -11,7 +12,8 @@ import {
   Title,
   WaterImage,
 } from "./styles";
-import theme from "../../global/styles/theme";
+import api from "../../services/api";
+import { useContext, useState } from "react";
 
 type WaterModalProps = {
   visible: boolean;
@@ -19,12 +21,34 @@ type WaterModalProps = {
 };
 
 const WaterModal = ({ visible, onDrink }: WaterModalProps) => {
-  function handleOptionSelect(option: string) {
+  const [intakeData, setIntakeData] = useState(null);
+  const { user } = useContext(UserContext);
+
+  async function handleOptionSelect(option: string) {
     let mlToAdd = 0;
     if (option === "glass") {
       mlToAdd = 300;
     } else if (option === "bottle") {
       mlToAdd = 500;
+    }
+
+    try {
+      const now = new Date();
+      const response = await api.post(
+        "/water-intake",
+        {
+          userId: user?.id,
+          amount: mlToAdd,
+          timestamp: now.toISOString(),
+        },
+        {
+          headers: { Authorization: `Bearer ${user?.token}` },
+        }
+      );
+      setIntakeData(response.data);
+      console.log("Intake registered successfully");
+    } catch (error) {
+      console.log("Error registering intake", error);
     }
 
     onDrink(mlToAdd);

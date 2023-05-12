@@ -71,7 +71,7 @@ export const LogoutButton = styled.TouchableOpacity`
 `;
 
 export const LogoutButtonText = styled.Text`
-  color: white;
+  color: ${(props) => props.theme.colors.text};
   font-family: ${(props) => props.theme.fonts.regular};
   font-size: 15px;
 `;

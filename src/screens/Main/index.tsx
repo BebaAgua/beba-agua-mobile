@@ -35,15 +35,17 @@ const AnimatedSvg = Animated.createAnimatedComponent(WavesSvg);
 
 export function Main() {
   const [percentage, setPercentage] = useState(0);
+  const [ml, setMl] = useState(0);
+  const [waveAnimatedValue, setWaveAnimatedValue] = useState(0);
+  const [heightAnimatedValue, setHeightAnimatedValue] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [modalShown, setmodalShown] = useState(false);
+  const [modalShow, setmodalShow] = useState(false);
 
   const { goal } = useContext(UserContext);
 
   const heightAnimated = useSharedValue(100);
   const waveAnimated = useSharedValue(5);
-  const mlAnimated = useSharedValue(0);
   const buttonBorderAnimated = useSharedValue(0);
   const buttonProps = useAnimatedProps(() => {
     return {
@@ -115,7 +117,7 @@ export function Main() {
       waveAnimated.value = waveAnimatedValue
         ? parseFloat(waveAnimatedValue)
         : 5;
-      mlAnimated.value = mlAnimatedValue ? parseFloat(mlAnimatedValue) : 0;
+      setMl(parseFloat(mlAnimatedValue ?? "0"));
       setPercentage(parseFloat(percentageValue ?? "0"));
     };
 
@@ -124,40 +126,40 @@ export function Main() {
 
   useEffect(() => {
     const saveAnimationState = async () => {
-      setTimeout(async () => {
-        await AsyncStorage.setItem(
-          "heightAnimatedValue",
-          heightAnimated.value.toString()
-        );
-        await AsyncStorage.setItem(
-          "waveAnimatedValue",
-          waveAnimated.value.toString()
-        );
-        await AsyncStorage.setItem(
-          "mlAnimatedValue",
-          mlAnimated.value.toString()
-        );
-        await AsyncStorage.setItem("percentageValue", percentage.toString());
-      }, 2000);
+      await AsyncStorage.setItem(
+        "heightAnimatedValue",
+        heightAnimated.value.toString()
+      );
+      await AsyncStorage.setItem(
+        "waveAnimatedValue",
+        waveAnimated.value.toString()
+      );
+      await AsyncStorage.setItem("mlAnimatedValue", ml.toString());
+      await AsyncStorage.setItem("percentageValue", percentage.toString());
     };
 
     saveAnimationState();
-  }, [
-    heightAnimated.value,
-    waveAnimated.value,
-    mlAnimated.value,
-    setPercentage,
-  ]);
+  }, [heightAnimated.value, waveAnimated.value, setMl, setPercentage]);
 
   const resetValuesAtMidnight = async () => {
     console.log("Resetando valores...");
-    await AsyncStorage.removeItem("heightAnimatedValue");
     await AsyncStorage.removeItem("waveAnimatedValue");
+    await AsyncStorage.removeItem("heightAnimatedValue");
     await AsyncStorage.removeItem("mlAnimatedValue");
     await AsyncStorage.removeItem("percentageValue");
+    setMl(0);
+    setPercentage(0);
+    setWaveAnimatedValue((waveAnimated.value = 5));
+    setHeightAnimatedValue((heightAnimated.value = 100));
   };
 
   const setMidnightTimeout = () => {
+    // const midnight = moment().set({
+    //   hour: 13,
+    //   minute: 46,
+    //   second: 0,
+    //   millisecond: 0,
+    // });
     const now = moment();
     const midnight = moment().endOf("day");
     const timeUntilMidnight = midnight.diff(now);
@@ -193,36 +195,37 @@ export function Main() {
       2,
       true
     );
+    setWaveAnimatedValue(waveAnimated.value);
 
     if (mlToAdd === null) {
       return;
     }
 
-    mlAnimated.value = withTiming(mlAnimated.value + mlToAdd, {
-      duration: 200,
-      easing: Easing.ease,
-    });
+    setMl(ml + mlToAdd);
 
     if (goal === null) {
       return;
     }
-    const progress = (mlAnimated.value + mlToAdd) / goal;
+    const progress = (ml + mlToAdd) / goal;
     const height = progress * 900 + 100;
 
     heightAnimated.value = withTiming(height, {
       duration: 1000,
       easing: Easing.ease,
     });
+    setHeightAnimatedValue(heightAnimated.value);
+
     setPercentage(Math.floor(progress * 100));
 
     setTimeout(() => {
       setModalVisible(false);
     }, 250);
 
-    if (progress >= 1 && !isModalVisible && !modalShown) {
+    if (progress >= 1 && !isModalVisible && !modalShow) {
       setTimeout(() => {
         setIsModalVisible(true);
-        setmodalShown(true);
+        setmodalShow(true);
+        AsyncStorage.setItem("modalShow", "true");
       }, 1000);
     }
   }
@@ -243,7 +246,7 @@ export function Main() {
       />
       <WaterModal visible={modalVisible} onDrink={handleDrink} />
       <MainHeader
-        ml={percentage === 0 ? 0 : Math.trunc(mlAnimated.value)}
+        ml={percentage === 0 ? 0 : Math.trunc(ml)}
         percents={percentage}
       />
       <AnimatedSvg animatedProps={svgContainerProps}>

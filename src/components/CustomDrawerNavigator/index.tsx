@@ -71,7 +71,7 @@ interface CustomDrawerContentProps {
   navigation: any;
 }
 
-export function CustomDrawerContent({
+export function CustomDrawerNavigator({
   state,
   navigation,
 }: CustomDrawerContentProps) {
