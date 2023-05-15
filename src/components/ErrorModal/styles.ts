@@ -16,7 +16,7 @@ export const ViewContainerIcon = styled.View`
 `;
 
 export const TextIcon = styled.Text`
-  color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.attention};
   font-size: 24px;
   font-weight: bold;
   margin-left: 10px;

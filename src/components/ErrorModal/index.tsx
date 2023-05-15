@@ -37,7 +37,7 @@ export function ErrorModal({ onClose, errorMessage }: ErrorModalProps) {
             <FontAwesome
               name="exclamation-triangle"
               size={24}
-              color={theme.colors.secondary}
+              color={theme.colors.attention}
             />
             <TextIcon>Atenção!</TextIcon>
           </ViewContainerIcon>

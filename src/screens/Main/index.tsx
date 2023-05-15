@@ -9,13 +9,15 @@ import Animated, {
 
 import { useContext, useEffect, useState } from "react";
 import moment from "moment";
-
 import { StatusBar } from "react-native";
 import { Circle, Path } from "react-native-svg";
 import { Fontisto } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import UserContext from "../../contexts/UserContext";
 import theme from "../../global/styles/theme";
+import WaterModal from "../../components/WaterModal";
+import { CongratulationModal } from "../../components/CongratulationModal";
 import { MainHeader } from "../../components/MainHeader";
 import {
   Container,
@@ -25,9 +27,6 @@ import {
   WavesSvg,
   width,
 } from "./styles";
-import UserContext from "../../contexts/UserContext";
-import WaterModal from "../../components/WaterModal";
-import { CongratulationModal } from "../../components/CongratulationModal";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 const AnimatedPath = Animated.createAnimatedComponent(Path);
@@ -42,7 +41,7 @@ export function Main() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modalShow, setmodalShow] = useState(false);
 
-  const { goal } = useContext(UserContext);
+  const { goal, user } = useContext(UserContext);
 
   const heightAnimated = useSharedValue(100);
   const waveAnimated = useSharedValue(5);
@@ -104,49 +103,71 @@ export function Main() {
 
   useEffect(() => {
     const loadAnimationState = async () => {
-      const heightAnimatedValue = await AsyncStorage.getItem(
-        "heightAnimatedValue"
-      );
-      const waveAnimatedValue = await AsyncStorage.getItem("waveAnimatedValue");
-      const mlAnimatedValue = await AsyncStorage.getItem("mlAnimatedValue");
-      const percentageValue = await AsyncStorage.getItem("percentageValue");
+      try {
+        const heightAnimatedValue = await AsyncStorage.getItem(
+          `${user?.id}:heightAnimatedValue`
+        );
+        const waveAnimatedValue = await AsyncStorage.getItem(
+          `${user?.id}:waveAnimatedValue`
+        );
+        const mlAnimatedValue = await AsyncStorage.getItem(
+          `${user?.id}:mlAnimatedValue`
+        );
+        const percentageValue = await AsyncStorage.getItem(
+          `${user?.id}:percentageValue`
+        );
 
-      heightAnimated.value = heightAnimatedValue
-        ? parseFloat(heightAnimatedValue)
-        : 100;
-      waveAnimated.value = waveAnimatedValue
-        ? parseFloat(waveAnimatedValue)
-        : 5;
-      setMl(parseFloat(mlAnimatedValue ?? "0"));
-      setPercentage(parseFloat(percentageValue ?? "0"));
+        heightAnimated.value = heightAnimatedValue
+          ? parseFloat(heightAnimatedValue)
+          : 100;
+
+        waveAnimated.value = waveAnimatedValue
+          ? parseFloat(waveAnimatedValue)
+          : 5;
+        setMl(parseFloat(mlAnimatedValue ?? "0"));
+        setPercentage(parseFloat(percentageValue ?? "0"));
+      } catch (error) {
+        console.log("Falha ao executar a animação!", error);
+      }
     };
 
     loadAnimationState();
-  }, []);
+  }, [user?.id]);
 
   useEffect(() => {
     const saveAnimationState = async () => {
-      await AsyncStorage.setItem(
-        "heightAnimatedValue",
-        heightAnimated.value.toString()
-      );
-      await AsyncStorage.setItem(
-        "waveAnimatedValue",
-        waveAnimated.value.toString()
-      );
-      await AsyncStorage.setItem("mlAnimatedValue", ml.toString());
-      await AsyncStorage.setItem("percentageValue", percentage.toString());
+      try {
+        await AsyncStorage.setItem(
+          `${user?.id}:heightAnimatedValue`,
+          heightAnimated.value.toString()
+        );
+        await AsyncStorage.setItem(
+          `${user?.id}:waveAnimatedValue`,
+          waveAnimated.value.toString()
+        );
+        await AsyncStorage.setItem(
+          `${user?.id}:mlAnimatedValue`,
+          ml.toString()
+        );
+        await AsyncStorage.setItem(
+          `${user?.id}:percentageValue`,
+          percentage.toString()
+        );
+      } catch (error) {
+        console.log("Falha ao salvar os dados!", error);
+      }
     };
-
-    saveAnimationState();
-  }, [heightAnimated.value, waveAnimated.value, setMl, setPercentage]);
+    setTimeout(() => {
+      saveAnimationState();
+    }, 1000);
+  }, [user?.id, heightAnimated.value, waveAnimated.value, ml, percentage]);
 
   const resetValuesAtMidnight = async () => {
     console.log("Resetando valores...");
-    await AsyncStorage.removeItem("waveAnimatedValue");
-    await AsyncStorage.removeItem("heightAnimatedValue");
-    await AsyncStorage.removeItem("mlAnimatedValue");
-    await AsyncStorage.removeItem("percentageValue");
+    await AsyncStorage.removeItem(`${user?.id}_waveAnimatedValue`);
+    await AsyncStorage.removeItem(`${user?.id}_heightAnimatedValue`);
+    await AsyncStorage.removeItem(`${user?.id}_mlAnimatedValue`);
+    await AsyncStorage.removeItem(`${user?.id}_percentageValue`);
     setMl(0);
     setPercentage(0);
     setWaveAnimatedValue((waveAnimated.value = 5));
@@ -155,8 +176,8 @@ export function Main() {
 
   const setMidnightTimeout = () => {
     // const midnight = moment().set({
-    //   hour: 13,
-    //   minute: 46,
+    //   hour: 16,
+    //   minute: 22,
     //   second: 0,
     //   millisecond: 0,
     // });
@@ -225,7 +246,6 @@ export function Main() {
       setTimeout(() => {
         setIsModalVisible(true);
         setmodalShow(true);
-        AsyncStorage.setItem("modalShow", "true");
       }, 1000);
     }
   }
