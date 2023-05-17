@@ -8,7 +8,7 @@ export const InitialContainer = styled.View`
 `;
 
 export const InitialText = styled.Text`
-  margin-top: 50%;
+  margin-top: 60%;
   color: ${(props) => props.theme.colors.focus};
   font-family: ${(props) => props.theme.fonts.regular};
   font-size: 16px;

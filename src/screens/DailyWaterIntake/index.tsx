@@ -92,6 +92,8 @@ export function DailyWaterIntake() {
             moment(a.createdAt, "HH:mm").diff(moment(b.createdAt, "HH:mm"))
           );
 
+          console.log(adjustedData);
+
           setWaterIntakes(adjustedData);
         } catch (error) {
           console.error(error);
