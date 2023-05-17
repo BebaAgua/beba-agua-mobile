@@ -64,9 +64,35 @@ export function FormLogin() {
           const { data } = await api.get(`/water-intake-goal/${user?.id}`, {
             headers: { Authorization: `Bearer ${user?.token}` },
           });
-          await AsyncStorage.setItem("goal", JSON.stringify(data.goalAmount));
-          setGoal(data.goalAmount);
-          console.log(data.goalAmount, "login");
+
+          if (Array.isArray(data) && data.length > 0) {
+            const latestGoal = data.reduce((latest, current) => {
+              if (
+                !latest ||
+                new Date(current.createdAt) > new Date(latest.createdAt)
+              ) {
+                return current;
+              }
+              return latest;
+            }, null);
+
+            if (latestGoal) {
+              setGoal(latestGoal.goalAmount);
+              await AsyncStorage.setItem(
+                "goal",
+                JSON.stringify(latestGoal.goalAmount)
+              );
+              console.log(latestGoal.goalAmount, "login");
+            } else {
+              showError(
+                "Não foi possível obter a meta diária de ingestão de água."
+              );
+            }
+          } else {
+            showError(
+              "Não foi possível obter a meta diária de ingestão de água."
+            );
+          }
         } catch (error) {
           console.log(error);
           showError(

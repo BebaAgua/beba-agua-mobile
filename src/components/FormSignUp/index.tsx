@@ -82,9 +82,12 @@ export function FormSignUp() {
               headers: { Authorization: `Bearer ${token}` },
             }
           );
-          setGoal(data.goalAmount);
-          await AsyncStorage.setItem("goal", JSON.stringify(data.goalAmount));
-          console.log(data.goalAmount, "Sign Up");
+
+          const goalAmount = data.goalAmount;
+
+          setGoal(goalAmount);
+          await AsyncStorage.setItem("goal", JSON.stringify(goalAmount));
+          console.log(goalAmount, "Sign Up");
         } catch (error) {
           showError(
             "Ocorreu um erro ao obter a meta de ingestão de água. Verifique sua conexão e tente novamente."

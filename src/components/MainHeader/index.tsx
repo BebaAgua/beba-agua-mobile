@@ -34,7 +34,7 @@ export function MainHeader({ ml, percents }: Props) {
   return (
     <Container>
       <TitleWrapper>
-        <WelcomeTitle>Olá {user?.name.trim()}!</WelcomeTitle>
+        <WelcomeTitle>Olá, {user?.name.trim()}!</WelcomeTitle>
         <MenuButton onPress={handleOpenMenu}>
           <Icon name="menu" size={26} color={theme.colors.secondary} />
         </MenuButton>

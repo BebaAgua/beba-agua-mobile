@@ -4,7 +4,7 @@ import React from "react";
 import moment from "moment-timezone";
 import { StatusBar } from "react-native";
 
-import { DailyHeader } from "../../components/DailyHeader ";
+import { DailyHeader } from "../../components/DailyHeader";
 import theme from "../../global/styles/theme";
 import UserContext from "../../contexts/UserContext";
 import api from "../../services/api";
