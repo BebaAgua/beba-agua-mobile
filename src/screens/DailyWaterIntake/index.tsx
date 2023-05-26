@@ -62,30 +62,27 @@ export function DailyWaterIntake() {
     React.useCallback(() => {
       async function fetchWaterIntakes() {
         try {
-          const response = await api.get(`/water-intake/${user?.id}`, {
-            headers: {
-              Authorization: `Bearer ${user?.token}`,
-            },
-          });
+          const startDate = moment().startOf("day");
+          const endDate = moment().endOf("day");
+          const response = await api.get(
+            `/water-intake/${user?.id}/${startDate}/${endDate}`,
+            {
+              headers: {
+                Authorization: `Bearer ${user?.token}`,
+              },
+            }
+          );
 
           const filteredIntakes = response.data.filter(
             (intake: WaterIntake) => {
-              const intakeDate = moment(intake.createdAt).tz(
-                "America/Sao_Paulo"
-              );
-              const startOfDay = moment()
-                .tz("America/Sao_Paulo")
-                .startOf("day");
-              const endOfDay = moment().tz("America/Sao_Paulo").endOf("day");
-              return intakeDate.isBetween(startOfDay, endOfDay, null, "[]");
+              const intakeDate = moment(intake.createdAt);
+              return intakeDate.isBetween(startDate, endDate, null, "[]");
             }
           );
 
           const adjustedData = filteredIntakes.map((data: WaterIntake) => ({
             ...data,
-            createdAt: moment(data.createdAt)
-              .tz("America/Sao_Paulo")
-              .format("HH:mm"),
+            createdAt: moment(data.createdAt).format("HH:mm"),
           }));
 
           adjustedData.sort((a: WaterIntake, b: WaterIntake) =>
