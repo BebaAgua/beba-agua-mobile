@@ -20,10 +20,13 @@ import {
   MenuItemIcon,
   MenuItemText,
 } from "./styles";
+import { StatusBar } from "react-native";
 
 const menuItems = [
   {
-    icon: <FontAwesome5 name="home" size={24} color={theme.colors.primary} />,
+    icon: (
+      <FontAwesome5 name="home" size={24} color={theme.colors.drawerIcons} />
+    ),
     activeIcon: (
       <FontAwesome5 name="home" size={24} color={theme.colors.focus} />
     ),
@@ -35,7 +38,7 @@ const menuItems = [
       <MaterialCommunityIcons
         name="cup"
         size={24}
-        color={theme.colors.primary}
+        color={theme.colors.drawerIcons}
       />
     ),
     activeIcon: (
@@ -46,7 +49,7 @@ const menuItems = [
   },
   {
     icon: (
-      <FontAwesome5 name="history" size={24} color={theme.colors.primary} />
+      <FontAwesome5 name="history" size={24} color={theme.colors.drawerIcons} />
     ),
     activeIcon: (
       <FontAwesome5 name="history" size={24} color={theme.colors.focus} />
@@ -56,7 +59,11 @@ const menuItems = [
   },
   {
     icon: (
-      <FontAwesome5 name="user-alt" size={24} color={theme.colors.primary} />
+      <FontAwesome5
+        name="user-alt"
+        size={24}
+        color={theme.colors.drawerIcons}
+      />
     ),
     activeIcon: (
       <FontAwesome5 name="user-alt" size={24} color={theme.colors.focus} />

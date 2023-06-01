@@ -26,6 +26,7 @@ import {
   AbsoluteCircle,
   WavesSvg,
   width,
+  height,
 } from "./styles";
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -128,6 +129,7 @@ export function Main() {
         setPercentage(parseFloat(percentageValue ?? "0"));
       } catch (error) {
         console.log("Falha ao executar a animação!", error);
+        throw error;
       }
     };
 
@@ -176,11 +178,11 @@ export function Main() {
 
   const setMidnightTimeout = () => {
     // const midnight = moment().set({
-    //   hour: 16,
-    //   minute: 22,
-    //   second: 0,
-    //   millisecond: 0,
-    // });
+    // //   hour: 14,
+    // //   minute: 39,
+    // //   second: 0,
+    // //   millisecond: 0,
+    // // });
     const now = moment();
     const midnight = moment().endOf("day");
     const timeUntilMidnight = midnight.diff(now);
@@ -196,6 +198,21 @@ export function Main() {
   useEffect(() => {
     setMidnightTimeout();
   }, []);
+
+  useEffect(() => {
+    if (goal === null) return;
+
+    const progress = ml / goal;
+    const height = progress * 900 + 100;
+
+    heightAnimated.value = withTiming(height, {
+      duration: 1000,
+      easing: Easing.ease,
+    });
+    setHeightAnimatedValue(heightAnimated.value);
+
+    setPercentage(Math.floor(progress * 100));
+  }, [ml, goal]);
 
   function handleDrink(mlToAdd: number | null) {
     buttonBorderAnimated.value = withTiming(1, {

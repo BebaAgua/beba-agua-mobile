@@ -1,4 +1,4 @@
-import { StatusBar, Text, TouchableOpacity, View } from "react-native";
+import { StatusBar } from "react-native";
 
 import {
   CongratulationImage,

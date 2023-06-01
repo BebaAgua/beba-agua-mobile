@@ -3,8 +3,10 @@ import { useFocusEffect } from "@react-navigation/native";
 import React from "react";
 import moment from "moment-timezone";
 import { StatusBar } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 
 import { DailyHeader } from "../../components/DailyHeader";
+import { DrawerHeader } from "../../components/DrawerHeader";
 import theme from "../../global/styles/theme";
 import UserContext from "../../contexts/UserContext";
 import api from "../../services/api";
@@ -18,7 +20,6 @@ import {
   Item,
   ItemContainer,
 } from "./styles";
-import { ScrollView } from "react-native-gesture-handler";
 
 interface WaterIntake {
   userId: string;
@@ -128,6 +129,7 @@ export function DailyWaterIntake() {
         barStyle="dark-content"
         backgroundColor={theme.colors.background}
       />
+
       <DailyHeader ml={totalAmount} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <ItemContainer>

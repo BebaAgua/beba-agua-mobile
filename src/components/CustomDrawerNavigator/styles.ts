@@ -6,7 +6,7 @@ interface MenuItemProps {
 }
 
 export const Container = styled.View`
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.drawerBackground};
   justify-content: center;
   align-items: center;
   padding-top: 40px;
@@ -21,11 +21,11 @@ export const LogoImage = styled.Image`
 export const Divider = styled.View`
   height: 0.5px;
   width: 100%;
-  background-color: ${(props) => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.drawerText};
 `;
 
 export const MenuContainer = styled.View`
-  padding-right: 16px;
+  margin-left: 10px;
 `;
 
 export const MenuButton = styled.TouchableOpacity``;
@@ -43,7 +43,7 @@ export const MenuItemIcon = styled.View`
 
 export const MenuItemText = styled.Text<MenuItemProps>`
   color: ${({ isFocused }) =>
-    isFocused ? theme.colors.focus : theme.colors.primary};
+    isFocused ? theme.colors.focus : theme.colors.drawerText};
   font-family: ${(props) => props.theme.fonts.regular};
   font-size: 13px;
 `;

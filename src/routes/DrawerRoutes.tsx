@@ -6,6 +6,7 @@ import { Main } from "../screens/Main";
 import { DailyWaterIntake } from "../screens/DailyWaterIntake";
 import { WaterIntakeReport } from "../screens/WaterIntakeReport";
 import { Profile } from "../screens/Profile";
+import { UpdateProfile } from "../screens/UpdateProfile";
 
 const Drawer = createDrawerNavigator();
 
@@ -25,8 +26,22 @@ export function DrawerRoutes() {
         component={DailyWaterIntake}
         options={{ headerShown: false }}
       />
-      <Drawer.Screen name="WaterIntakeReport" component={WaterIntakeReport} />
-      <Drawer.Screen name="Profile" component={Profile} />
+      <Drawer.Screen
+        name="WaterIntakeReport"
+        component={WaterIntakeReport}
+        options={{ headerShown: false }}
+      />
+      <Drawer.Screen
+        name="Profile"
+        component={Profile}
+        options={{ headerShown: false }}
+      />
+
+      <Drawer.Screen
+        name="UpdateProfile"
+        component={UpdateProfile}
+        options={{ headerShown: false }}
+      />
     </Drawer.Navigator>
   );
 }

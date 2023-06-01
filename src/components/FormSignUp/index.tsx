@@ -11,7 +11,7 @@ import api from "../../services/api";
 import Button from "../Button";
 import { ControlledInput } from "../ControlledInput";
 import { ErrorModal } from "../ErrorModal";
-import { Container, ContainerButton, Scroll } from "./styles";
+import { Container, Scroll, ButtonContainer } from "./styles";
 import theme from "../../global/styles/theme";
 
 type FormData = {
@@ -177,7 +177,7 @@ export function FormSignUp() {
           />
         </Container>
       </Scroll>
-      <ContainerButton>
+      <ButtonContainer>
         <Button
           title="Cadastrar"
           onPress={() => {
@@ -187,7 +187,7 @@ export function FormSignUp() {
           size={300}
           color={theme.colors.formButton}
         />
-      </ContainerButton>
+      </ButtonContainer>
     </>
   );
 }

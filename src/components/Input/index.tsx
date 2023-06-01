@@ -24,7 +24,7 @@ export function Input({ icon, value, ...rest }: InputProps) {
 
   return (
     <Container>
-      <IconContainer isFocused={isFocused}>
+      <IconContainer isFocused={isFocused} isFilled={isFilled}>
         <FontAwesome
           name={icon}
           size={24}
@@ -35,6 +35,7 @@ export function Input({ icon, value, ...rest }: InputProps) {
       </IconContainer>
 
       <InputText
+        isFilled={isFilled}
         placeholderTextColor={
           isFocused || isFilled ? theme.colors.focus : theme.colors.secondary
         }

@@ -3,6 +3,7 @@ import styled, { css } from "styled-components/native";
 
 interface Props {
   isFocused: boolean;
+  isFilled: boolean;
 }
 
 export const Container = styled.View`
@@ -22,12 +23,12 @@ export const IconContainer = styled.View<Props>`
   margin-right: 2px;
   background-color: ${(props) => props.theme.colors.background};
   border: ${(props) => props.theme.colors.secondary};
-  ${({ isFocused }) =>
-    isFocused &&
+
+  ${(props) =>
+    (props.isFocused || props.isFilled) &&
     css`
-      border-bottom-width: 2px;
-      border: ${(props) => props.theme.colors.focus};
-    `};
+      border-color: ${props.theme.colors.focus};
+    `}
 `;
 
 export const InputText = styled(TextInput)<Props>`
@@ -35,14 +36,14 @@ export const InputText = styled(TextInput)<Props>`
   background-color: ${(props) => props.theme.colors.background};
   font-family: ${(props) => props.theme.fonts.regular};
   font-size: 12px;
-  border: ${(props) => props.theme.colors.secondary};
   border-radius: 5px;
   color: ${(props) => props.theme.colors.textInput};
   padding: 0 23px;
-  ${({ isFocused }) =>
-    isFocused &&
+  border: ${(props) => props.theme.colors.secondary};
+
+  ${(props) =>
+    (props.isFocused || props.isFilled) &&
     css`
-      border-bottom-width: 2px;
-      border: ${(props) => props.theme.colors.focus};
-    `};
+      border-color: ${props.theme.colors.focus};
+    `}
 `;

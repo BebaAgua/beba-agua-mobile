@@ -25,6 +25,12 @@ export default {
     textInput: "#404040",
 
     background: "#f8f8ff",
+
+    drawerBackground: "#FFFFFF",
+
+    drawerIcons: "#808080",
+
+    drawerText: "#808080",
   },
   fonts: {
     regular: "Poppins_400Regular",

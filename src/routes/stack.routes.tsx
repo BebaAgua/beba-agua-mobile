@@ -6,7 +6,6 @@ import { Welcome } from "../screens/Welcome ";
 import { SignUp } from "../screens/SignUp";
 import { Login } from "../screens/Login";
 import { ForgotPassword } from "../screens/ForgotPassword";
-import { Main } from "../screens/Main";
 import { DrawerRoutes } from "./DrawerRoutes";
 
 const { Screen, Navigator } = createNativeStackNavigator();
