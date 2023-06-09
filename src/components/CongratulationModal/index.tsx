@@ -41,7 +41,7 @@ export function CongratulationModal({
             title="Fechar"
             onPress={onClose}
             size={250}
-            color={theme.colors.formButton}
+            color={theme.colors.blue800}
           />
         </Content>
       </Container>

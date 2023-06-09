@@ -10,7 +10,7 @@ export const Container = styled.View`
   position: relative;
   padding-left: 24px;
   padding-right: 24px;
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.white200};
 `;
 
 export const FooterContainer = styled.View`

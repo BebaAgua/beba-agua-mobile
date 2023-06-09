@@ -29,7 +29,7 @@ export function Input({ icon, value, ...rest }: InputProps) {
           name={icon}
           size={24}
           color={
-            isFocused || isFilled ? theme.colors.focus : theme.colors.secondary
+            isFocused || isFilled ? theme.colors.blue800 : theme.colors.blue600
           }
         />
       </IconContainer>
@@ -37,7 +37,7 @@ export function Input({ icon, value, ...rest }: InputProps) {
       <InputText
         isFilled={isFilled}
         placeholderTextColor={
-          isFocused || isFilled ? theme.colors.focus : theme.colors.secondary
+          isFocused || isFilled ? theme.colors.blue800 : theme.colors.blue600
         }
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}

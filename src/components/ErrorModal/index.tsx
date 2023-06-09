@@ -37,7 +37,7 @@ export function ErrorModal({ onClose, errorMessage }: ErrorModalProps) {
             <FontAwesome
               name="exclamation-triangle"
               size={24}
-              color={theme.colors.attention}
+              color={theme.colors.red700}
             />
             <TextIcon>Atenção!</TextIcon>
           </ViewContainerIcon>
@@ -46,7 +46,7 @@ export function ErrorModal({ onClose, errorMessage }: ErrorModalProps) {
             title="Fechar"
             onPress={handleClose}
             size={250}
-            color={theme.colors.formButton}
+            color={theme.colors.blue800}
           />
         </ViewContainer>
       </Container>

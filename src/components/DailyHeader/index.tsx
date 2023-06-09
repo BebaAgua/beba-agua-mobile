@@ -33,7 +33,7 @@ export function DailyHeader({ ml }: Props) {
       <TitleWrapper>
         <WelcomeTitle>Olá, {user?.name.trim()}!</WelcomeTitle>
         <MenuButton onPress={handleOpenMenu}>
-          <Icon name="menu" size={26} color={theme.colors.secondary} />
+          <Icon name="menu" size={26} color={theme.colors.blue600} />
         </MenuButton>
       </TitleWrapper>
       <ContainerGoal>

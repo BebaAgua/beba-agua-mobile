@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 export const Container = styled.View`
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: ${(props) => props.theme.colors.drawerBackground};
+  background-color: ${(props) => props.theme.colors.white100};
   padding: 20px;
   border-radius: 10px;
 `;
@@ -28,7 +28,7 @@ export const NameText = styled.Text`
   font-size: 20px;
   margin-left: 10px;
   font-family: ${(props) => props.theme.fonts.medium};
-  color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.blue600};
 `;
 
 export const ButtonWrapper = styled.View`
@@ -37,7 +37,7 @@ export const ButtonWrapper = styled.View`
 `;
 
 export const UpdateButton = styled.TouchableOpacity`
-  background-color: ${(props) => props.theme.colors.focus};
+  background-color: ${(props) => props.theme.colors.blue800};
   padding: 5px 20px;
   border-radius: 5px;
 `;
@@ -45,7 +45,7 @@ export const UpdateButton = styled.TouchableOpacity`
 export const ButtonText = styled.Text`
   font-size: 14px;
   font-family: ${(props) => props.theme.fonts.medium};
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.white200};
 `;
 
 export const DescriptionText = styled.Text`
@@ -53,5 +53,5 @@ export const DescriptionText = styled.Text`
   font-size: 10px;
   padding: 5px;
   font-family: ${(props) => props.theme.fonts.regular};
-  color: ${(props) => props.theme.colors.drawerText};
+  color: ${(props) => props.theme.colors.gray500};
 `;

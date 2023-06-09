@@ -40,13 +40,13 @@ export function DrawerHeader({
     <Container>
       <HeaderWrapper>
         <BackButton onPress={handleBackButton}>
-          <Icon name="arrow-left" size={26} color={theme.colors.focus} />
+          <Icon name="arrow-left" size={26} color={theme.colors.blue800} />
         </BackButton>
         <ProfileText>{title}</ProfileText>
       </HeaderWrapper>
       {showMenuButton && (
         <MenuButton onPress={handleOpenMenu}>
-          <Icon name="menu" size={26} color={theme.colors.focus} />
+          <Icon name="menu" size={26} color={theme.colors.blue800} />
         </MenuButton>
       )}
     </Container>

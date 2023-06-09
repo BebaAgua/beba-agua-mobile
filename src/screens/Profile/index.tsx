@@ -10,7 +10,7 @@ export function Profile() {
     <Container>
       <StatusBar
         barStyle="dark-content"
-        backgroundColor={theme.colors.background}
+        backgroundColor={theme.colors.white200}
       />
       <DrawerHeader title="Perfil" showMenuButton={true} />
       <UpdateUserProfile />

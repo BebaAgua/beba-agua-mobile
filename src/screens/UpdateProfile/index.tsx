@@ -119,7 +119,7 @@ export function UpdateProfile() {
       <Container>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor={theme.colors.background}
+          backgroundColor={theme.colors.white200}
         />
 
         <DrawerHeader
@@ -141,7 +141,7 @@ export function UpdateProfile() {
             control={control}
             icon="envelope"
             placeholder="E-mail"
-            style={{ color: theme.colors.drawerText }}
+            style={{ color: theme.colors.gray500 }}
             editable={false}
             value={user?.email}
           />
@@ -175,7 +175,7 @@ export function UpdateProfile() {
               Keyboard.dismiss();
             }}
             size={310}
-            color={theme.colors.formButton}
+            color={theme.colors.blue800}
           />
         </ButtonContainer>
       </Container>

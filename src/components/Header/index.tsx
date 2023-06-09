@@ -19,7 +19,7 @@ export function Header({ title, subtitle, onBackPress }: HeaderProps) {
       <TitleWrapper>
         <Title>{title}</Title>
         <BackButton onPress={() => navigation.goBack()}>
-          <Icon name="arrow-left" size={24} color={theme.colors.secondary} />
+          <Icon name="arrow-left" size={24} color={theme.colors.blue600} />
         </BackButton>
       </TitleWrapper>
       {subtitleLines.map((line, index) => (

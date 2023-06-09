@@ -27,7 +27,7 @@ export function Login(props: ForgotPasswordProps) {
     <Container>
       <StatusBar
         barStyle="dark-content"
-        backgroundColor={theme.colors.background}
+        backgroundColor={theme.colors.white200}
       />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <KeyboardAvoidingView behavior="position" enabled>

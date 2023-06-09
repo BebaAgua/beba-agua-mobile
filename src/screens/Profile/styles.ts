@@ -3,11 +3,11 @@ import styled from "styled-components/native";
 export const Container = styled.View`
   flex: 1;
   padding: 20px;
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.white200};
 `;
 
 export const PerfilText = styled.Text`
   font-size: 30px;
   font-family: ${(props) => props.theme.fonts.medium};
-  color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.blue600};
 `;

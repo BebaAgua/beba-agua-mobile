@@ -178,11 +178,11 @@ export function Main() {
 
   const setMidnightTimeout = () => {
     // const midnight = moment().set({
-    // //   hour: 14,
-    // //   minute: 39,
-    // //   second: 0,
-    // //   millisecond: 0,
-    // // });
+    //   hour: 22,
+    //   minute: 45,
+    //   second: 0,
+    //   millisecond: 0,
+    // });
     const now = moment();
     const midnight = moment().endOf("day");
     const timeUntilMidnight = midnight.diff(now);
@@ -275,7 +275,7 @@ export function Main() {
     <Container>
       <StatusBar
         barStyle="dark-content"
-        backgroundColor={theme.colors.background}
+        backgroundColor={theme.colors.white200}
       />
       <CongratulationModal
         visible={isModalVisible}
@@ -289,13 +289,13 @@ export function Main() {
       <AnimatedSvg animatedProps={svgContainerProps}>
         <AnimatedPath
           animatedProps={firstWaveProps}
-          fill={theme.colors.secondary}
+          fill={theme.colors.blue600}
           transform="translate(0, 10)"
         />
 
         <AnimatedPath
           animatedProps={secondWaveProps}
-          fill={theme.colors.waves}
+          fill={theme.colors.blue500}
           transform="translate(0, 15)"
         />
       </AnimatedSvg>
@@ -304,12 +304,12 @@ export function Main() {
           <AbsoluteCircle width={120} height={120}>
             <AnimatedCircle
               animatedProps={buttonProps}
-              fill={theme.colors.border}
-              stroke={theme.colors.secondary}
+              fill={theme.colors.blue700}
+              stroke={theme.colors.blue600}
               strokeOpacity={0.8}
             />
           </AbsoluteCircle>
-          <Fontisto name="blood-drop" size={40} color={theme.colors.shape} />
+          <Fontisto name="blood-drop" size={40} color={theme.colors.white200} />
         </FooterButton>
       </FooterContainer>
     </Container>

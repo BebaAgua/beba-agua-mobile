@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 export const Container = styled.View`
   flex: 1;
   padding: 20px;
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.white200};
 `;
 
 export const UpdateProfileContainer = styled.View`

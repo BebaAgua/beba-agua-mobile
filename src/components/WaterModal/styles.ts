@@ -10,7 +10,7 @@ export const Container = styled.View`
 `;
 
 export const Content = styled.View`
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.white200};
   border-radius: 10px;
   padding: 20px;
   align-items: center;
@@ -26,7 +26,7 @@ export const Title = styled.Text`
   margin-bottom: 20px;
   margin-top: 20px;
   font-family: ${(props) => props.theme.fonts.medium};
-  color: ${(props) => props.theme.colors.textInput};
+  color: ${(props) => props.theme.colors.gray600};
 `;
 
 export const OptionButton = styled.TouchableOpacity`
@@ -36,12 +36,12 @@ export const OptionButton = styled.TouchableOpacity`
   justify-content: center;
   border-radius: 10px;
   padding: 10px;
-  background-color: ${(props) => props.theme.colors.secondary};
+  background-color: ${(props) => props.theme.colors.blue600};
   margin-top: 10px;
 `;
 export const OptionText = styled.Text`
   font-size: 14px;
   margin-left: 10px;
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.white200};
   font-family: ${(props) => props.theme.fonts.regular};
 `;

@@ -14,13 +14,13 @@ export const TitleWrapper = styled.View`
 export const Title = styled.Text`
   font-size: 30px;
   font-family: ${(props) => props.theme.fonts.medium};
-  color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.blue600};
 `;
 
 export const Subtitle = styled.Text`
   font-size: 20px;
   font-family: ${(props) => props.theme.fonts.regular};
-  color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.blue600};
   line-height: 25px;
 `;
 

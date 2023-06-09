@@ -20,15 +20,12 @@ import {
   MenuItemIcon,
   MenuItemText,
 } from "./styles";
-import { StatusBar } from "react-native";
 
 const menuItems = [
   {
-    icon: (
-      <FontAwesome5 name="home" size={24} color={theme.colors.drawerIcons} />
-    ),
+    icon: <FontAwesome5 name="home" size={24} color={theme.colors.gray500} />,
     activeIcon: (
-      <FontAwesome5 name="home" size={24} color={theme.colors.focus} />
+      <FontAwesome5 name="home" size={24} color={theme.colors.blue800} />
     ),
     text: "Home",
     screen: "Main",
@@ -38,35 +35,35 @@ const menuItems = [
       <MaterialCommunityIcons
         name="cup"
         size={24}
-        color={theme.colors.drawerIcons}
+        color={theme.colors.gray500}
       />
     ),
     activeIcon: (
-      <MaterialCommunityIcons name="cup" size={24} color={theme.colors.focus} />
+      <MaterialCommunityIcons
+        name="cup"
+        size={24}
+        color={theme.colors.blue800}
+      />
     ),
     text: "Ingestão de água do dia",
     screen: "DailyWaterIntake",
   },
   {
     icon: (
-      <FontAwesome5 name="history" size={24} color={theme.colors.drawerIcons} />
+      <FontAwesome5 name="history" size={24} color={theme.colors.gray500} />
     ),
     activeIcon: (
-      <FontAwesome5 name="history" size={24} color={theme.colors.focus} />
+      <FontAwesome5 name="history" size={24} color={theme.colors.blue800} />
     ),
     text: "Histórico de ingestão de água",
     screen: "WaterIntakeReport",
   },
   {
     icon: (
-      <FontAwesome5
-        name="user-alt"
-        size={24}
-        color={theme.colors.drawerIcons}
-      />
+      <FontAwesome5 name="user-alt" size={24} color={theme.colors.gray500} />
     ),
     activeIcon: (
-      <FontAwesome5 name="user-alt" size={24} color={theme.colors.focus} />
+      <FontAwesome5 name="user-alt" size={24} color={theme.colors.blue800} />
     ),
     text: "Perfil",
     screen: "Profile",

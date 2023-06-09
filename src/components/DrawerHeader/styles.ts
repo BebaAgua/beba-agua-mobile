@@ -17,7 +17,7 @@ export const ProfileText = styled.Text`
   font-size: 20px;
   margin-left: 5px;
   font-family: ${(props) => props.theme.fonts.medium};
-  color: ${(props) => props.theme.colors.focus};
+  color: ${(props) => props.theme.colors.blue800};
 `;
 
 export const MenuButton = styled.TouchableOpacity`

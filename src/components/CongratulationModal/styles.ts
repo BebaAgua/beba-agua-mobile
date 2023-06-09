@@ -10,7 +10,7 @@ export const Container = styled.View`
 `;
 
 export const Content = styled.View`
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.white200};
   border-radius: 10px;
   padding: 20px;
   align-items: center;
@@ -26,7 +26,7 @@ export const CongratulationText = styled.Text`
   font-size: 16px;
   font-family: ${(props) => props.theme.fonts.regular};
   margin-bottom: 20px;
-  color: ${(props) => props.theme.colors.textInput};
+  color: ${(props) => props.theme.colors.gray600};
   align-items: center;
   text-align: center;
 `;

@@ -21,29 +21,29 @@ export const IconContainer = styled.View<Props>`
   justify-content: center;
   align-items: center;
   margin-right: 2px;
-  background-color: ${(props) => props.theme.colors.background};
-  border: ${(props) => props.theme.colors.secondary};
+  background-color: ${(props) => props.theme.colors.white200};
+  border: ${(props) => props.theme.colors.blue600};
 
   ${(props) =>
     (props.isFocused || props.isFilled) &&
     css`
-      border-color: ${props.theme.colors.focus};
+      border-color: ${props.theme.colors.blue800};
     `}
 `;
 
 export const InputText = styled(TextInput)<Props>`
   flex: 1;
-  background-color: ${(props) => props.theme.colors.background};
+  background-color: ${(props) => props.theme.colors.white200};
   font-family: ${(props) => props.theme.fonts.regular};
   font-size: 12px;
   border-radius: 5px;
-  color: ${(props) => props.theme.colors.textInput};
+  color: ${(props) => props.theme.colors.gray600};
   padding: 0 23px;
-  border: ${(props) => props.theme.colors.secondary};
+  border: ${(props) => props.theme.colors.blue600};
 
   ${(props) =>
     (props.isFocused || props.isFilled) &&
     css`
-      border-color: ${props.theme.colors.focus};
+      border-color: ${props.theme.colors.blue800};
     `}
 `;

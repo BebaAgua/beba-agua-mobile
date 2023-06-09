@@ -1,36 +1,26 @@
 export default {
   colors: {
-    primary: "#3dbff2",
+    blue400: "#3dbff2",
 
-    secondary: "#44A1F2",
+    blue500: "#32BAFA",
 
-    waves: "#32BAFA",
+    blue600: "#44A1F2",
 
-    button: "#447EF2",
+    blue700: "#447EF2",
 
-    formButton: "#02457a",
+    blue800: "#02457a",
 
-    border: "#447ef2",
+    green700: "#12A454",
 
-    focus: "#02457a",
+    red700: "#e83F5B",
 
-    success: "#12A454",
+    white100: "#FFFFFF",
 
-    attention: "#e83F5B",
+    white200: "#f8f8ff",
 
-    shape: "#f8f8ff",
+    gray500: "#808080",
 
-    text: "#f8f8ff",
-
-    textInput: "#404040",
-
-    background: "#f8f8ff",
-
-    drawerBackground: "#FFFFFF",
-
-    drawerIcons: "#808080",
-
-    drawerText: "#808080",
+    gray600: "#404040",
   },
   fonts: {
     regular: "Poppins_400Regular",

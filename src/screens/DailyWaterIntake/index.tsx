@@ -107,7 +107,7 @@ export function DailyWaterIntake() {
       <InitialContainer>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor={theme.colors.background}
+          backgroundColor={theme.colors.white200}
         />
         <DailyHeader ml={totalAmount} />
         <InitialText>Você ainda não ingeriu água hoje!</InitialText>
@@ -127,7 +127,7 @@ export function DailyWaterIntake() {
     <Container>
       <StatusBar
         barStyle="dark-content"
-        backgroundColor={theme.colors.background}
+        backgroundColor={theme.colors.white200}
       />
 
       <DailyHeader ml={totalAmount} />

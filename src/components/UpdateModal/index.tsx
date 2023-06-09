@@ -32,7 +32,7 @@ export function UpdateModal({ visible }: UpdateModalProps) {
             title="Fechar"
             onPress={handleUpdate}
             size={250}
-            color={theme.colors.formButton}
+            color={theme.colors.blue800}
           />
         </Content>
       </Container>

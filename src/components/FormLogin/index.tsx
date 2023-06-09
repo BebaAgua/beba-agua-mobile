@@ -160,7 +160,7 @@ export function FormLogin() {
             Keyboard.dismiss();
           }}
           size={300}
-          color={theme.colors.formButton}
+          color={theme.colors.blue800}
         />
       </ContainerButton>
     </>

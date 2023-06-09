@@ -6,7 +6,7 @@ interface MenuItemProps {
 }
 
 export const Container = styled.View`
-  background-color: ${(props) => props.theme.colors.drawerBackground};
+  background-color: ${(props) => props.theme.colors.white100};
   justify-content: center;
   align-items: center;
   padding-top: 40px;
@@ -21,7 +21,7 @@ export const LogoImage = styled.Image`
 export const Divider = styled.View`
   height: 0.5px;
   width: 100%;
-  background-color: ${(props) => props.theme.colors.drawerText};
+  background-color: ${(props) => props.theme.colors.gray500};
 `;
 
 export const MenuContainer = styled.View`
@@ -43,7 +43,7 @@ export const MenuItemIcon = styled.View`
 
 export const MenuItemText = styled.Text<MenuItemProps>`
   color: ${({ isFocused }) =>
-    isFocused ? theme.colors.focus : theme.colors.drawerText};
+    isFocused ? theme.colors.blue800 : theme.colors.gray500};
   font-family: ${(props) => props.theme.fonts.regular};
   font-size: 13px;
 `;
@@ -59,7 +59,7 @@ export const LogoutButtonContainer = styled.View`
 `;
 
 export const LogoutButton = styled.TouchableOpacity`
-  background-color: ${(props) => props.theme.colors.attention};
+  background-color: ${(props) => props.theme.colors.red700};
   padding: 10px;
   margin: 10px;
   align-items: center;
@@ -71,7 +71,7 @@ export const LogoutButton = styled.TouchableOpacity`
 `;
 
 export const LogoutButtonText = styled.Text`
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.white200};
   font-family: ${(props) => props.theme.fonts.regular};
   font-size: 15px;
 `;

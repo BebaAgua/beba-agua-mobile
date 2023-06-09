@@ -15,7 +15,7 @@ export const TitleWrapper = styled.View`
 export const WelcomeTitle = styled.Text`
   font-size: 20px;
   font-family: ${(props) => props.theme.fonts.medium};
-  color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.blue600};
 `;
 
 export const MenuButton = styled.TouchableOpacity`
@@ -27,19 +27,19 @@ export const ContainerGoal = styled.View`
   width: 100%;
   margin-top: 20px;
   padding: 10px;
-  background-color: ${(props) => props.theme.colors.secondary};
+  background-color: ${(props) => props.theme.colors.blue600};
   border-radius: 10px;
   justify-content: space-between;
   flex-direction: row;
 `;
 export const TextGoal = styled.Text`
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.white200};
   font-family: ${(props) => props.theme.fonts.regular};
   font-size: 20px;
 `;
 
 export const TextMl = styled.Text`
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) => props.theme.colors.white200};
   font-family: ${(props) => props.theme.fonts.regular};
   font-size: 20px;
 `;
@@ -55,7 +55,7 @@ export const ContainerPercentage = styled.View`
 `;
 
 export const TextPercentage = styled.Text`
-  color: ${(props) => props.theme.colors.border};
+  color: ${(props) => props.theme.colors.blue700};
   font-family: ${(props) => props.theme.fonts.medium};
   font-size: 80px;
 `;

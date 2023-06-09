@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { TouchableOpacityProps } from "react-native";
 import { StyledText, StyledTouchableOpacity } from "./styles";
 import theme from "../../global/styles/theme";
@@ -11,7 +10,7 @@ interface ButtonProps extends TouchableOpacityProps {
 }
 
 function Button(props: ButtonProps): JSX.Element {
-  const { title, onPress, color = theme.colors.button, size = 230 } = props;
+  const { title, onPress, color = theme.colors.blue700, size = 230 } = props;
   const handlePress = () => {
     onPress();
   };

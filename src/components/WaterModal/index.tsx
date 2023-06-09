@@ -65,7 +65,7 @@ const WaterModal = ({ visible, onDrink }: WaterModalProps) => {
             <MaterialCommunityIcons
               name="cup-water"
               size={32}
-              color={theme.colors.background}
+              color={theme.colors.white200}
             />
             <OptionText>Copo (300ml)</OptionText>
           </OptionButton>
@@ -73,7 +73,7 @@ const WaterModal = ({ visible, onDrink }: WaterModalProps) => {
             <FontAwesome5
               name="wine-bottle"
               size={32}
-              color={theme.colors.background}
+              color={theme.colors.white200}
             />
             <OptionText>Garrafa (500ml)</OptionText>
           </OptionButton>
