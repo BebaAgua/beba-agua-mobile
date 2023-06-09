@@ -33,7 +33,7 @@ Projeto Mobile de conclusão do curso de Análise e Desenvolvimento de Sistemas 
 - Tela de esqueci minha senha;
 - ✅ Tela principal onde será mostrado a porcentagem que o usuário ingeriu de água no dia, sua meta e quanto falta para bater sua meta diária;
 - Push Notification para avisar o usuário a cada uma hora para ele fazer a ingestão de água;
-- Tela de perfil do usuário, onde ele poderá mudar o seu peso e idade para que seja feito uma nova meta de diária de ingestão de água;
+- ✅ Tela de perfil do usuário, onde ele poderá mudar o seu peso e idade para que seja feito uma nova meta de diária de ingestão de água;
 - Tela com gráficos mostrando a sua média de consumo semanal ou mensal e os dias que ele bateu ou não a meta diária de ingestão de água.
 
 <a id="run"></a>
